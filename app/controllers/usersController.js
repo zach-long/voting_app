@@ -6,10 +6,12 @@ const passport = require('passport'),
  LocalStrategy = require('passport-local').Strategy
 
  // user model
- var User = require('../models/users.js')
+ const User = require('../models/users.js')
+ // passport config
+ //const passportConfig = require('../../config/passport.js')
 
 router.get('/', (req, res) => {
-  res.render('index')
+  res.render('profile')
 })
 
 router.get('/register', (req, res) => {
@@ -30,7 +32,7 @@ router.post('/register', (req, res) => {
   req.checkBody('password2', 'The passwords you entered do not match').equals(req.body.password)
 
   if (req.validationErrors()) {
-    res.render('register', {errors: errors})
+    res.render('register', {errors: req.validationErrors})
   } else {
     var newUser = new User({
       name: req.body.name,
@@ -49,9 +51,38 @@ router.post('/register', (req, res) => {
   }
 })
 
-router.post('/login', (req, res) => {
+passport.use(new LocalStrategy((username, password, done) => {
+  User.getUserByUsername(username, (err, user) => {
+    if (err) throw err
+    if (!user) {
+      return done(null, false, {message: 'Unknown User'})
+    }
 
+    User.comparePassword(password, user.password, (err, isMatch) => {
+      if (err) throw err
+      if (isMatch) {
+        return done(null, user)
+      } else {
+        return done(null, false, {message: 'Invalid password'})
+      }
+    })
+
+  })
+}))
+
+passport.serializeUser((user, done) => {
+  done(null, user.id)
 })
+
+passport.deserializeUser((id, done) => {
+  done(err, user)
+})
+
+router.post('/login',
+passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}, (req, res) => { res.render('/') }))
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
