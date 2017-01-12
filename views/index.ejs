@@ -9,6 +9,11 @@
   <div><% include partials/register.ejs %></div>
   <div><% include partials/login.ejs %></div>
   <h1>Hello, world!</h1>
+  <% if (user) { %>
+    <h5>You are currently logged in</h5>
+  <% } else { %>
+    <h5>You are not logged in</h5>
+  <% } %>
   <nav><% include partials/navigation.ejs %></nav>
 
 </body>

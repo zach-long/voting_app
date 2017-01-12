@@ -9,19 +9,14 @@ router.get('/', (req, res) => {
   res.render('index')
 })
 
-router.get('/register', (req, res) => {
-  res.redirect('/u/register')
-})
-
-router.get('/login', (req, res) => {
-  res.redirect('/u/login')
-})
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
+router.get('/poll', (req, res) => {
+  if (req.user) {
+    console.log("User is logged in and can create a poll")
+  } else {
+    console.log("User cannot create a poll")
   }
+
   res.redirect('/')
-}
+})
 
 module.exports = router
