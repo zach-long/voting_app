@@ -31,7 +31,7 @@ module.exports.createUser = function(newUser, cb) {
 
 module.exports.getUserByUsername = function(username, cb) {
   let query = {username: username}
-  User.findById(id, cb)
+  User.findOne(query, cb)
 }
 
 module.exports.getUserById = function(id, cb) {

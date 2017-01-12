@@ -5,21 +5,13 @@ const router = express.Router()
 const passport = require('passport'),
  LocalStrategy = require('passport-local').Strategy
 
- // user model
- const User = require('../models/users.js')
- // passport config
- //const passportConfig = require('../../config/passport.js')
+// user model
+const User = require('../models/users.js')
+// passport config
+//const passportConfig = require('../../config/passport.js')
 
 router.get('/', (req, res) => {
   res.render('profile')
-})
-
-router.get('/register', (req, res) => {
-  res.render('register')
-})
-
-router.get('/login', (req, res) => {
-  res.render('login')
 })
 
 router.post('/register', (req, res) => {
@@ -47,7 +39,7 @@ router.post('/register', (req, res) => {
     })
 
     req.flash('success_msg', 'Registration successful!')
-    res.redirect('/u/login')
+    res.redirect('/')
   }
 })
 
@@ -75,20 +67,20 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  done(err, user)
+  User.getUserById(id, (err, user) => {
+    done(err, user)
+  })
 })
 
 router.post('/login',
 passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
+  successRedirect: '/u',
+  failureRedirect: '/'
 }))
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
-  }
+router.get('/logout', (req, res) => {
+  req.logout()
   res.redirect('/')
-}
+})
 
 module.exports = router
