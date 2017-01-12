@@ -15,7 +15,13 @@ const mongodb = require('mongodb')
 const mongoose = require('mongoose');
 
 // connect database and save reference
-mongoose.connect('mongodb://localhost/voting_db');
+mongoose.connect('mongodb://localhost/voting_db', (err) => {
+  if (err) {
+    throw err
+  } else {
+    console.log("MongoDB connected successfully!")
+  }
+});
 var db = mongoose.connection;
 
 // app init
