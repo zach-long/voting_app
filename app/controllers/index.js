@@ -10,19 +10,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/register', (req, res) => {
-  res.render('register')
+  res.redirect('/u/register')
 })
 
 router.get('/login', (req, res) => {
-  res.render('login')
-})
-
-router.post('/register', (req, res) => {
-
-})
-
-router.post('/login', (req, res) => {
-
+  res.redirect('/u/login')
 })
 
 function isLoggedIn(req, res, next) {

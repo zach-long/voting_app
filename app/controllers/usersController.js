@@ -82,7 +82,7 @@ router.post('/login',
 passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login'
-}, (req, res) => { res.render('/') }))
+}))
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

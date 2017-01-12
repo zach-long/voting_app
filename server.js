@@ -26,8 +26,8 @@ const routes = require('./app/controllers/index.js')
 const userController = require('./app/controllers/usersController.js')
 
 // view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 // bodyParser
 app.use(bodyParser.json())
