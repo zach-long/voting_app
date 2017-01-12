@@ -30,6 +30,7 @@ const app = express()
 // set controllers
 const routes = require('./app/controllers/index.js')
 const userController = require('./app/controllers/usersController.js')
+const pollController = require('./app/controllers/pollController.js')
 
 // view engine
 app.set('views', path.join(__dirname, 'views'))
@@ -88,6 +89,7 @@ app.use((req, res, next) => {
 // route root directory to routes in 'routes.js'
 app.use('/', routes)
 app.use('/u', userController)
+app.use('/poll', pollController)
 
 // start server
 app.set('port', (process.env.PORT || 3000))

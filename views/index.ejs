@@ -6,6 +6,9 @@
 </head>
 <body>
 
+  <% if (errors) { %>
+    <p><%= errors %></p>
+  <% } %>
   <div><% include partials/register.ejs %></div>
   <div><% include partials/login.ejs %></div>
   <h1>Hello, world!</h1>
