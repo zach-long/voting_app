@@ -58,18 +58,7 @@ router.post('/:pollID', (req, res) => {
 
     // validate poll integrity
     req.checkBody('name', 'You must enter a name').notEmpty()
-console.log(req.body.option)
-var testPoll = new Poll({
-  pollid: req.params.pollID,
-  name: req.body.name
-})
-let arrOps = req.body.option
-for (let i = 0; i < arrOps.length; i++) {
-  let newOp = {choice: arrOps[i], votes: 0}
-  testPoll.options[i] = newOp
-}
 
-console.log("Test poll: " + testPoll)
     // handles logic based on validation
     if (!req.validationErrors()) {
       // instantiate a Poll, save to DB
