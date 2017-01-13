@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Voting App</title>
+</head>
+<body>
+
+  <h2><%= poll.name %></h2>
+  <form method="post" action="/poll/vote/<%= poll.pollid %>">
+    <% poll.options.forEach(function(option) { %>
+      <%- include('components/voting_option', {choice: option.choice}) %>
+    <% }) %>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+
+  <nav><% include partials/navigation.ejs %></nav>
+
+</body>
+</html>

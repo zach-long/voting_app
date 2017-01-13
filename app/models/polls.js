@@ -3,15 +3,9 @@ const mongoose = require('mongoose')
 
 // define poll
 var PollModel = mongoose.Schema({
-  pollid: {
-    type: String
-  },
-  name: {
-    type: String
-  },
-  options: {
-    type: String
-  }
+  pollid: String,
+  name: String,
+  options: Array
 })
 
 // set Poll equal to a reference of the PollModel mongoose schema
@@ -28,4 +22,14 @@ module.exports.createPoll = function(newPoll, cb) {
 module.exports.getPollByPollID = function(pollID, cb) {
   let query = {pollid: pollID}
   Poll.findOne(query, cb)
+}
+
+// Poll method to get all polls from DB
+module.exports.getPolls = function(cb) {
+  Poll.find({}, cb)
+}
+
+// Poll method to save a vote value
+module.exports.registerVote = function(voteValue, cb) {
+
 }

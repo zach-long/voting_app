@@ -21,13 +21,30 @@ router.get('/', (req, res) => {
   }
 })
 
+router.post('/test/:pollID', (req, res) => {
+  console.log(req.body.option)
+  var testPoll = new Poll({
+    pollid: req.params.pollID,
+    name: req.body.name
+  })
+  let arrOps = req.body.option
+  for (let i = 0; i < arrOps.length; i++) {
+    let newOp = {choice: arrOps[i], votes: 0}
+    testPoll.options[i] = newOp
+  }
+
+  console.log("Test poll: " + testPoll)
+
+  res.redirect('/')
+})
+
 // can only be accessed by an authenticated user
 /*
    */
-router.get('/:pollID*', (req, res) => {
+router.get('/:pollID', (req, res) => {
   if (req.user) {
-    // check if poll exists already
-      // display from DB
+    let pollid = req.params.pollID
+    res.locals.pollid = pollid
     res.render('polls')
 
   } else {
@@ -36,23 +53,39 @@ router.get('/:pollID*', (req, res) => {
 })
 
 // saves poll to the DB
-router.post('/:pollID*', (req, res) => {
+router.post('/:pollID', (req, res) => {
   if (req.user) {
 
     // validate poll integrity
     req.checkBody('name', 'You must enter a name').notEmpty()
+console.log(req.body.option)
+var testPoll = new Poll({
+  pollid: req.params.pollID,
+  name: req.body.name
+})
+let arrOps = req.body.option
+for (let i = 0; i < arrOps.length; i++) {
+  let newOp = {choice: arrOps[i], votes: 0}
+  testPoll.options[i] = newOp
+}
 
+console.log("Test poll: " + testPoll)
     // handles logic based on validation
     if (!req.validationErrors()) {
       // instantiate a Poll, save to DB
       var newPoll = new Poll({
         pollid: req.params.pollID,
-        name: req.body.name,
-        options: []
+        name: req.body.name
       })
-
-      // push options from 'req.body' into 'newPoll' array
-
+      /* set the poll 'options' to an array of objects,
+         every object has a 'choice' and 'votes' value */
+      // init array to hold any number of options
+      let tempArray = req.body.option
+      // create an object from the temp array and add it to 'options'
+      for (let i = 0; i < tempArray.length; i++) {
+        let pollOptions = {choice: tempArray[i], votes: 0}
+        newPoll.options[i] = pollOptions
+      }
 
       // create a Poll with function from the Model file
       Poll.createPoll(newPoll, (err, poll) => {
@@ -71,6 +104,14 @@ router.post('/:pollID*', (req, res) => {
   } else {
     res.redirect('/')
   }
+})
+
+router.get('/vote/:pollID', (req, res) => {
+  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+    if (err) throw err
+    //res.locals.poll = thePoll
+    res.render('vote', {poll: thePoll})
+  })
 })
 
 // generates a random number, used as a poll ID
