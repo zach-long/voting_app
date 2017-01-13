@@ -7,11 +7,11 @@
 <body>
 
   <h2><%= poll.name %></h2>
-  <form method="post" action="/poll/vote/<%= poll.pollid %>">
+  <div>
     <% poll.options.forEach(function(option) { %>
-      <%- include('components/voting_option', {choice: option.choice}) %>
+      <%- include('components/voting_result', {choice: option.choice, votes: option.votes}) %>
     <% }) %>
-  </form>
+  </div>
 
   <nav><% include partials/navigation.ejs %></nav>
 

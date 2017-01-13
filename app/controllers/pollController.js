@@ -95,11 +95,43 @@ router.post('/:pollID', (req, res) => {
   }
 })
 
+// handle request to unauthenticated user to vote in a poll
 router.get('/vote/:pollID', (req, res) => {
   Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
     if (err) throw err
     //res.locals.poll = thePoll
     res.render('vote', {poll: thePoll})
+  })
+})
+
+// applies the users vote and saves to DB
+router.post('/vote/:pollID', (req, res) => {
+  // get value from button clicked
+  let voteValue = Object.keys(req.body)[0]
+
+  // get the poll
+  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+    if (err) throw err
+
+    // increase the vote count
+    Poll.registerVote(thePoll, voteValue, (err, updatedPoll) => {
+
+      // update poll in DB
+      Poll.updatePoll(updatedPoll, (err, savedPoll) => {
+
+        // redirect to results view to display data
+        res.redirect('/poll/results/' + req.params.pollID)
+      })
+    })
+  })
+})
+
+router.get('/results/:pollID', (req, res) => {
+  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+    if (err) throw err
+    console.log("Rendering " + thePoll)
+
+    res.render('results', {poll: thePoll})
   })
 })
 

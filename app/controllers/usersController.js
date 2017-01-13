@@ -9,7 +9,11 @@ const User = require('../models/users.js')
 
 // set user root path to '/u'
 router.get('/', (req, res) => {
-  res.render('profile')
+  if (req.user) {
+    res.render('profile')
+  } else {
+    res.redirect('/')
+  }
 })
 
 // handle a a POST request to register a user
