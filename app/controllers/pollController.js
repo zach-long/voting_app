@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 
-// import Poll model
+// import models
 const Poll = require('../models/polls.js')
 
 // can only be accessed by an authenticated user
@@ -19,23 +19,6 @@ router.get('/', (req, res) => {
   } else {
     res.redirect('/')
   }
-})
-
-router.post('/test/:pollID', (req, res) => {
-  console.log(req.body.option)
-  var testPoll = new Poll({
-    pollid: req.params.pollID,
-    name: req.body.name
-  })
-  let arrOps = req.body.option
-  for (let i = 0; i < arrOps.length; i++) {
-    let newOp = {choice: arrOps[i], votes: 0}
-    testPoll.options[i] = newOp
-  }
-
-  console.log("Test poll: " + testPoll)
-
-  res.redirect('/')
 })
 
 // can only be accessed by an authenticated user
@@ -63,6 +46,7 @@ router.post('/:pollID', (req, res) => {
     if (!req.validationErrors()) {
       // instantiate a Poll, save to DB
       var newPoll = new Poll({
+        creator: req.user._id,
         pollid: req.params.pollID,
         name: req.body.name
       })
@@ -80,6 +64,12 @@ router.post('/:pollID', (req, res) => {
       Poll.createPoll(newPoll, (err, poll) => {
         if (err) throw err
         console.log("Created poll '" + poll + "'.")
+
+        Poll.setOwner(req.user, poll, (err, owner) => {
+          if (err) throw err
+          console.log("Set " + owner + "to be the owner of " + newPoll)
+
+        })
       })
 
       // display a success message and go to root
@@ -87,7 +77,8 @@ router.post('/:pollID', (req, res) => {
       res.redirect('/')
     } else {
       // render homepage with error message
-      res.render('profile', {errors: req.validationErrors})
+      console.log(req.validationErrors)
+      res.render('profile')
     }
 
   } else {
@@ -95,7 +86,7 @@ router.post('/:pollID', (req, res) => {
   }
 })
 
-// handle request to unauthenticated user to vote in a poll
+// handle request for unauthenticated user to vote in a poll
 router.get('/vote/:pollID', (req, res) => {
   Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
     if (err) throw err
@@ -115,9 +106,11 @@ router.post('/vote/:pollID', (req, res) => {
 
     // increase the vote count
     Poll.registerVote(thePoll, voteValue, (err, updatedPoll) => {
+      if (err) throw err
 
       // update poll in DB
       Poll.updatePoll(updatedPoll, (err, savedPoll) => {
+        if (err) throw err
 
         // redirect to results view to display data
         res.redirect('/poll/results/' + req.params.pollID)
@@ -129,7 +122,6 @@ router.post('/vote/:pollID', (req, res) => {
 router.get('/results/:pollID', (req, res) => {
   Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
     if (err) throw err
-    console.log("Rendering " + thePoll)
 
     res.render('results', {poll: thePoll})
   })

@@ -2,6 +2,8 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
+const Poll = require('./polls.js')
+
 // define user
 var UserModel = mongoose.Schema({
   username: {
@@ -16,7 +18,8 @@ var UserModel = mongoose.Schema({
   },
   name: {
     type: String
-  }
+  },
+  polls: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Poll' }]
 })
 
 // set User equal to a reference of the UserModel mongoose schema

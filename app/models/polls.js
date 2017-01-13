@@ -1,12 +1,15 @@
 // imports
 const mongoose = require('mongoose')
 
+const User = require('./users.js')
+
 // define poll
 var PollModel = mongoose.Schema({
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   pollid: String,
   name: String,
   options: Array
-}, {strict: false})
+})
 
 // set Poll equal to a reference of the PollModel mongoose schema
 var Poll = module.exports = mongoose.model('Poll', PollModel)
@@ -15,7 +18,15 @@ var Poll = module.exports = mongoose.model('Poll', PollModel)
 
 // Poll method to insert a Poll into the database
 module.exports.createPoll = function(newPoll, cb) {
+  console.log("Creating " + newPoll)
   newPoll.save(cb)
+}
+
+// Poll method to set the owner of the poll
+module.exports.setOwner = function(owner, newPoll, cb) {
+  console.log("Evaluation " + owner + newPoll)
+  owner.polls.push(newPoll)
+  User.update({ _id: owner._id }, { $set: { polls: owner.polls }}, cb)
 }
 
 // Poll method to get a Poll from the DB with provided pollID

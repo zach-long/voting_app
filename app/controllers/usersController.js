@@ -4,12 +4,14 @@ const router = express.Router()
 const passport = require('passport'),
  LocalStrategy = require('passport-local').Strategy
 
-// import User model
+// import models
 const User = require('../models/users.js')
 
 // set user root path to '/u'
 router.get('/', (req, res) => {
   if (req.user) {
+    console.log(req.user)
+    console.log(req.user.polls)
     res.render('profile')
   } else {
     res.redirect('/')
