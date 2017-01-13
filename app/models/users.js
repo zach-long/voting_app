@@ -22,6 +22,8 @@ var UserModel = mongoose.Schema({
 // set User equal to a reference of the UserModel mongoose schema
 var User = module.exports = mongoose.model('User', UserModel)
 
+// define User methods
+
 // insert a User into the DB and hash their password
 module.exports.createUser = function(newUser, cb) {
   bcrypt.genSalt(10, (err, salt) => {
