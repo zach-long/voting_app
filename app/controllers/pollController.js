@@ -35,6 +35,44 @@ router.get('/:pollID*', (req, res) => {
   }
 })
 
+// saves poll to the DB
+router.post('/:pollID*', (req, res) => {
+  if (req.user) {
+
+    // validate poll integrity
+    req.checkBody('name', 'You must enter a name').notEmpty()
+
+    // handles logic based on validation
+    if (!req.validationErrors()) {
+      // instantiate a Poll, save to DB
+      var newPoll = new Poll({
+        pollid: req.params.pollID,
+        name: req.body.name,
+        options: []
+      })
+
+      // push options from 'req.body' into 'newPoll' array
+
+
+      // create a Poll with function from the Model file
+      Poll.createPoll(newPoll, (err, poll) => {
+        if (err) throw err
+        console.log("Created poll '" + poll + "'.")
+      })
+
+      // display a success message and go to root
+      req.flash('success_msg', 'Poll created successfully!')
+      res.redirect('/')
+    } else {
+      // render homepage with error message
+      res.render('profile', {errors: req.validationErrors})
+    }
+
+  } else {
+    res.redirect('/')
+  }
+})
+
 // generates a random number, used as a poll ID
 function generateRandomNumber() {
   let randomNumber = Math.floor(Math.random() * 999999).toString()

@@ -22,11 +22,9 @@ router.post('/register', (req, res) => {
   req.checkBody('password', 'You must enter a password').notEmpty()
   req.checkBody('password2', 'The passwords you entered do not match').equals(req.body.password)
 
-  if (req.validationErrors()) {
-    // if invalid, render homepage with errors display
-    res.render('index', {errors: req.validationErrors})
-  } else {
-    // if valid, instantiate a User
+  // handles logic based on validation
+  if (!req.validationErrors()) {
+    // instantiate a User
     var newUser = new User({
       name: req.body.name,
       email: req.body.email,
@@ -43,6 +41,9 @@ router.post('/register', (req, res) => {
     // display a success message and go to root
     req.flash('success_msg', 'Registration successful!')
     res.redirect('/')
+  } else {
+    // render homepage with errors display
+    res.render('index', {errors: req.validationErrors})
   }
 })
 
