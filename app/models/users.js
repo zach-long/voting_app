@@ -55,3 +55,8 @@ module.exports.comparePassword = function(checkPassword, hash, cb) {
     cb(null, isMatch)
   })
 }
+
+
+module.exports.findPollsByCreator = function(userid, cb) {
+  Poll.find({ creator: userid }, cb)
+}

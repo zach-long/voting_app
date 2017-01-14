@@ -56,3 +56,8 @@ module.exports.updatePoll = function(thePoll, cb) {
   //thePoll.save(cb)
   Poll.update({ _id: thePoll._id }, { $set: { options: thePoll.options }}, cb);
 }
+
+// Poll method to find all polls for a User
+module.exports.findPollsByCreator = function(userid, cb) {
+  Poll.find({ creator: userid }, cb)
+}

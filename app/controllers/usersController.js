@@ -6,13 +6,16 @@ const passport = require('passport'),
 
 // import models
 const User = require('../models/users.js')
+const Poll = require('../models/polls.js')
 
 // set user root path to '/u'
 router.get('/', (req, res) => {
   if (req.user) {
     console.log(req.user)
     console.log(req.user.polls)
-    res.render('profile')
+    Poll.findPollsByCreator(req.user._id, (err, polls) => {
+      res.render('profile', {polls: polls})
+    })
   } else {
     res.redirect('/')
   }
