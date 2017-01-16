@@ -144,6 +144,20 @@ router.post('/delete/:pollID', (req, res) => {
       let thePollID = Object.keys(req.body)[0]
       Poll.findOneAndRemove({ pollid: thePollID }, (err, poll) => {
         if (err) throw err
+
+        let deletedPoll = poll._id
+        let userPollRefs = req.user.polls
+        for (let i = 0; i < userPollRefs.length; i++) {
+
+          let pollRef = userPollRefs[i]
+          if (String(deletedPoll) == String(pollRef)) {
+            let index = userPollRefs.indexOf(deletedPoll)
+            Poll.updateOwner(req.user._id, req.user.polls, index, deletedPoll, (err, owner) => {
+
+            })
+          }
+
+        }
         res.redirect('/u')
       })
 

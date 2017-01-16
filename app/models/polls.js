@@ -18,15 +18,19 @@ var Poll = module.exports = mongoose.model('Poll', PollModel)
 
 // Poll method to insert a Poll into the database
 module.exports.createPoll = function(newPoll, cb) {
-  console.log("Creating " + newPoll)
   newPoll.save(cb)
 }
 
 // Poll method to set the owner of the poll
 module.exports.setOwner = function(owner, newPoll, cb) {
-  console.log("Evaluation " + owner + newPoll)
   owner.polls.push(newPoll)
   User.update({ _id: owner._id }, { $set: { polls: owner.polls }}, cb)
+}
+
+// Poll method to update the owner
+module.exports.updateOwner = function(owner_id, ownerPolls, index, poll, cb) {
+  ownerPolls.splice(index, 1)
+  User.update({ _id: owner_id }, { $set: { polls: ownerPolls }}, cb)
 }
 
 // Poll method to get a Poll from the DB with provided pollID

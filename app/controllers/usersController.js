@@ -12,7 +12,6 @@ const Poll = require('../models/polls.js')
 router.get('/', (req, res) => {
   if (req.user) {
     console.log(req.user)
-    console.log(req.user.polls)
     Poll.findPollsByCreator(req.user._id, (err, polls) => {
       res.render('profile', {polls: polls, deletedPollName: false})
     })
