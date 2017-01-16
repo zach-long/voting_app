@@ -142,8 +142,8 @@ router.post('/vote/:pollID', (req, res) => {
 // render the page for poll results
 router.get('/results/:pollID', (req, res) => {
   if (req.cookies[req.params.pollID]) {
+    // get user Vote value from cookie
     let userVote = req.cookies[req.params.pollID]
-    console.log(userVote)
     Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
       if (err) throw err
 
