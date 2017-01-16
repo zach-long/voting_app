@@ -6,6 +6,10 @@
 </head>
 <body>
 
+  <% if (typeof deletedPollName == 'undefined') { %>
+    <p>Deleted <%= deletedPollName %> successfully</p>
+  <% } %>
+
   <a href="/u/logout">Log out</a>
   <h1>Welcome, <%= user.name %></h1>
   <nav><% include partials/navigation.ejs %></nav>

@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     console.log(req.user)
     console.log(req.user.polls)
     Poll.findPollsByCreator(req.user._id, (err, polls) => {
-      res.render('profile', {polls: polls})
+      res.render('profile', {polls: polls, deletedPollName: false})
     })
   } else {
     res.redirect('/')

@@ -1,9 +1,17 @@
 // imports
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
 
 // import models
 const Poll = require('../models/polls.js')
+
+// method for me during development to clean up
+// remove this before prod
+router.get('/drop', (req, res) => {
+  mongoose.connection.db.dropDatabase()
+  res.redirect('/')
+})
 
 // can only be accessed by an authenticated user
 /* generates a random Key to function as the poll ID,
@@ -119,12 +127,27 @@ router.post('/vote/:pollID', (req, res) => {
   })
 })
 
+// render the page for poll results
 router.get('/results/:pollID', (req, res) => {
   Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
     if (err) throw err
 
     res.render('results', {poll: thePoll})
   })
+})
+
+// authenticated user can destroy own polls
+router.post('/delete/:pollID', (req, res) => {
+  if (req.user) {
+    // validate that user created the poll
+
+      let thePollID = Object.keys(req.body)[0]
+      Poll.findOneAndRemove({ pollid: thePollID }, (err, poll) => {
+        if (err) throw err
+        res.redirect('/u')
+      })
+
+  }
 })
 
 // generates a random number, used as a poll ID
