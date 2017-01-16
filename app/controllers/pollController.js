@@ -96,11 +96,17 @@ router.post('/:pollID', (req, res) => {
 
 // handle request for unauthenticated user to vote in a poll
 router.get('/vote/:pollID', (req, res) => {
-  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
-    if (err) throw err
-    //res.locals.poll = thePoll
-    res.render('vote', {poll: thePoll})
-  })
+  if (!req.cookies[req.params.pollID]) {
+    Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+      if (err) throw err
+      //res.locals.poll = thePoll
+      res.render('vote', {poll: thePoll})
+    })
+
+  } else {
+    console.log("exists")
+    res.redirect('/poll/results/' + req.params.pollID)
+  }
 })
 
 // applies the users vote and saves to DB
@@ -120,6 +126,12 @@ router.post('/vote/:pollID', (req, res) => {
       Poll.updatePoll(updatedPoll, (err, savedPoll) => {
         if (err) throw err
 
+        // store cookie to register this user has voted
+        res.cookie(req.params.pollID, voteValue, {
+          maxAge: 1000 * 60 * 1440, // one day
+          httpOnly: true
+        })
+
         // redirect to results view to display data
         res.redirect('/poll/results/' + req.params.pollID)
       })
@@ -129,38 +141,45 @@ router.post('/vote/:pollID', (req, res) => {
 
 // render the page for poll results
 router.get('/results/:pollID', (req, res) => {
-  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
-    if (err) throw err
+  if (req.cookies[req.params.pollID]) {
+    let userVote = req.cookies[req.params.pollID]
+    console.log(userVote)
+    Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+      if (err) throw err
 
-    res.render('results', {poll: thePoll})
-  })
+      res.render('results', {poll: thePoll, vote: userVote})
+    })
+
+  } else {
+    res.redirect('/poll/vote/' + req.params.pollID)
+  }
 })
 
 // authenticated user can destroy own polls
 router.post('/delete/:pollID', (req, res) => {
   if (req.user) {
-    // validate that user created the poll
+    let thePollID = Object.keys(req.body)[0]
+    Poll.findOneAndRemove({ pollid: thePollID }, (err, poll) => {
+      if (err) throw err
 
-      let thePollID = Object.keys(req.body)[0]
-      Poll.findOneAndRemove({ pollid: thePollID }, (err, poll) => {
-        if (err) throw err
+      let deletedPoll = poll._id
+      let userPollRefs = req.user.polls
+      for (let i = 0; i < userPollRefs.length; i++) {
 
-        let deletedPoll = poll._id
-        let userPollRefs = req.user.polls
-        for (let i = 0; i < userPollRefs.length; i++) {
+        let pollRef = userPollRefs[i]
+        if (String(deletedPoll) == String(pollRef)) {
+          let index = userPollRefs.indexOf(deletedPoll)
+          Poll.updateOwner(req.user._id, req.user.polls, index, deletedPoll, (err, owner) => {
 
-          let pollRef = userPollRefs[i]
-          if (String(deletedPoll) == String(pollRef)) {
-            let index = userPollRefs.indexOf(deletedPoll)
-            Poll.updateOwner(req.user._id, req.user.polls, index, deletedPoll, (err, owner) => {
-
-            })
-          }
-
+          })
         }
-        res.redirect('/u')
-      })
 
+      }
+      res.redirect('/u')
+    })
+
+  } else {
+    res.redirect('/')
   }
 })
 
