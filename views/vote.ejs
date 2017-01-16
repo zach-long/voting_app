@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-    <title>Voting App</title>
-</head>
-<body>
+<% include components/header.ejs %>
 
   <h2><%= poll.name %></h2>
   <form method="post" action="/poll/vote/<%= poll.pollid %>">
@@ -15,5 +9,4 @@
 
   <nav><% include partials/navigation.ejs %></nav>
 
-</body>
-</html>
+<% include components/footer.ejs %>

@@ -4,17 +4,24 @@ const router = express.Router()
 const passport = require('passport'),
  LocalStrategy = require('passport-local').Strategy
 
- // include Poll model
- const Poll = require('../models/polls.js')
+// include Poll model
+const Poll = require('../models/polls.js')
 
 // loads the index file at the site root
 router.get('/', (req, res) => {
-  Poll.getPolls((err, polls) => {
-    if (err) throw err
-    //console.log("Polls retrieved from DB: " + polls)
+  if (!req.user) {
+    Poll.getPolls((err, polls) => {
+      if (err) throw err
+      //console.log("Polls retrieved from DB: " + polls)
 
-    res.render('index', {polls: polls})
-  })
+      res.render('index', {polls: polls})
+    })
+
+  } else {
+    Poll.findPollsByCreator(req.user._id, (err, polls) => {
+      res.redirect('/u')
+    })
+  }
 })
 
 router.get('/test', (req, res) => {

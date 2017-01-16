@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-    <title>Header Parser</title>
-</head>
-<body>
+<% include components/header.ejs %>
 
   <% if (typeof deletedPollName == 'undefined') { %>
     <p>Deleted <%= deletedPollName %> successfully</p>
@@ -19,5 +13,4 @@
     <%- include('components/link', { poll: poll }) %>
   <% }) %>
 
-</body>
-</html>
+<% include components/footer.ejs %>

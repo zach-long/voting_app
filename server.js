@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost/voting_db', (err) => {
   } else {
     console.log("MongoDB connected successfully!")
   }
-});
+})
 var db = mongoose.connection;
 
 // app init
