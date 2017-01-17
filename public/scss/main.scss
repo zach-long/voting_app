@@ -1,0 +1,9 @@
+// reused variables and mixins
+@import "modules/variables";
+@import "modules/mixins";
+@import "modules/responsive-design";
+@import "modules/text";
+
+// styles for page elements
+@import "partials/structure";
+@import "partials/specific";
