@@ -8,17 +8,19 @@
       <label>Poll name</label>
       <input type="text" placeholder="Name" name="name">
     </div>
-    <div>
-      <label>Option</label>
-      <input type="text" name="option">
-    </div>
-    <div>
-      <label>Option</label>
-      <input type="text" name="option">
+    <div class="options">
+      <div>
+        <label>Option</label>
+        <input type="text" name="option">
+      </div>
+      <div>
+        <label>Option</label>
+        <input type="text" name="option">
+      </div>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
-  <button onclick="addInput()">Add another option</button>
+  <button id="add-option">Add another option</button>
 
   <nav><% include partials/navigation.ejs %></nav>
 
