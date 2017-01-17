@@ -1,20 +1,8 @@
 <% include components/header.ejs %>
 
-  <div><% include partials/register.ejs %></div>
-  <div><% include partials/login.ejs %></div>
-  <h1>Hello, world!</h1>
-  <% if (user) { %>
-    <h5>You are currently logged in</h5>
-  <% } else { %>
-    <h5>You are not logged in</h5>
-  <% } %>
-  <nav><% include partials/navigation.ejs %></nav>
-
   <h3>View all polls</h3>
-  <ul>
   <% polls.forEach(function(poll) { %>
-    <li><a href="/poll/vote/<%= poll.pollid %>"><%= poll.name %></a></li>
+    <%- include('components/openPolls', { poll: poll }); %>
   <% }); %>
-  </ul>
 
 <% include components/footer.ejs %>

@@ -1,16 +1,8 @@
 <% include components/header.ejs %>
 
-  <% if (typeof deletedPollName == 'undefined') { %>
-    <p>Deleted <%= deletedPollName %> successfully</p>
-  <% } %>
-
-  <a href="/u/logout">Log out</a>
-  <h1>Welcome, <%= user.name %></h1>
-  <nav><% include partials/navigation.ejs %></nav>
-
   <h3>See your polls</h3>
   <% polls.forEach(function(poll) { %>
-    <%- include('components/link', { poll: poll }) %>
-  <% }) %>
+    <%- include('components/userPolls', { poll: poll }); %>
+  <% }); %>
 
 <% include components/footer.ejs %>

@@ -14,18 +14,29 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <% if (user) { %><li><a href="/u">Profile</a></li><% } %>
+        <% if (!user) { %>
+        <li><a class="login">Log in to create a poll</a></li>
+        <% } else { %>
+        <li><a href="/poll">Create a poll</a></li>
+        <% } %>
       </ul>
     </nav>
     <div>
       <% if (!user) { %>
       <ul>
-        <li>Register</li>
-        <li>Log in</li>
+        <li><button id="register">Register</button></li>
+        <li><button class="login">Log in</button></li>
       </ul>
+      <div id="registration-form">
+        <%- include('partials/register.ejs') %>
+      </div>
+      <div id="login-form">
+        <%- include('partials/login.ejs') %>
+      </div>
       <% } else { %>
       <ul>
-        <li>Welcome, <%= user.name %></li>
+        <li><p>Welcome, <%= user.name %>.</p></li>
+        <li><a href="/u/logout" class="logout">Log out</a></li>
       </ul>
       <% } %>
     </div>
