@@ -1,6 +1,9 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  min-height: 100vh;
+  @include xBrowserFlexColCenter;
 }
 
 header {
@@ -38,9 +41,17 @@ header {
 }
 
 main {
+  flex: 1 1 auto;
   @include xBrowserFlexColCenter;
+
+  .main-content {
+    padding-top: 10%;
+    @include xBrowserFlexColCenter;
+  }
 }
 
 footer {
-
+  padding: .75em 0 .75em 0;
+  margin: 0;
+  @include xBrowserFlexRowCenter;
 }

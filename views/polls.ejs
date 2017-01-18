@@ -2,24 +2,26 @@
 
   <a href="/u">Go back</a>
 
-  <h2>Make a new poll</h2>
-  <form method="post" action="/poll/<%= pollid %>">
-    <div id="poll-name-wrapper">
-      <label>Poll name</label>
-      <input type="text" placeholder="Name" name="name">
-    </div>
-    <div class="options">
-      <div>
-        <label>Option</label>
-        <input type="text" name="option">
+  <div class="main-content">
+    <h2>Make a new poll</h2>
+    <form method="post" action="/poll/<%= pollid %>">
+      <div id="poll-name-wrapper">
+        <label>Poll name</label>
+        <input type="text" placeholder="Name" name="name">
       </div>
-      <div>
-        <label>Option</label>
-        <input type="text" name="option">
+      <div class="options">
+        <div>
+          <label>Option</label>
+          <input type="text" name="option">
+        </div>
+        <div>
+          <label>Option</label>
+          <input type="text" name="option">
+        </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-  <button id="add-option">Add another option</button>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <button id="add-option">Add another option</button>
+  </div>
 
 <% include components/footer.ejs %>

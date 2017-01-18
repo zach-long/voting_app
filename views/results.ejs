@@ -1,11 +1,15 @@
 <% include components/header.ejs %>
 
-  <h2><%= poll.name %></h2>
-  <div>
-    <% poll.options.forEach(function(option) { %>
-      <%- include('components/voting_result', {choice: option.choice, votes: option.votes}) %>
-    <% }) %>
-    <p>You voted for "<%= vote %>"</p>
+  <a href="/u">Go back</a>
+
+  <div class="main-content">
+    <h2><%= poll.name %></h2>
+    <div>
+      <% poll.options.forEach(function(option) { %>
+        <%- include('components/voting_result', {choice: option.choice, votes: option.votes}) %>
+      <% }) %>
+      <p>You voted for "<%= vote %>"</p>
+    </div>
   </div>
 
 <% include components/footer.ejs %>

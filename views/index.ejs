@@ -1,8 +1,10 @@
 <% include components/header.ejs %>
 
-  <h3>View all polls</h3>
-  <% polls.forEach(function(poll) { %>
-    <%- include('components/openPolls', { poll: poll }); %>
-  <% }); %>
+  <div class="main-content">
+    <h3>View all polls</h3>
+    <% polls.forEach(function(poll) { %>
+      <%- include('components/openPolls', { poll: poll }); %>
+    <% }); %>
+  </div>
 
 <% include components/footer.ejs %>
