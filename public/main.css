@@ -16,6 +16,9 @@ a {
   text-decoration: none;
   color: #FF8C00; }
 
+.visible {
+  display: block !important; }
+
 html, body {
   margin: 0;
   padding: 0; }
@@ -49,9 +52,6 @@ header {
     margin: 0; }
     header div ul li {
       display: inline-block; }
-  header div div {
-    display: none;
-    position: absolute; }
 
 main {
   display: -webkit-flex;
@@ -66,5 +66,13 @@ main {
   align-content: center;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap; }
+
+#login-form {
+  display: none;
+  position: absolute; }
+
+#registration-form {
+  display: none;
+  position: absolute; }
 
 /*# sourceMappingURL=main.css.map */
