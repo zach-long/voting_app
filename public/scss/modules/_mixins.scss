@@ -1,0 +1,29 @@
+@mixin xBrowserFlexRowOutside {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+@mixin xBrowserFlexColCenter {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}

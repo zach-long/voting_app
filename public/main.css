@@ -16,4 +16,55 @@ a {
   text-decoration: none;
   color: #FF8C00; }
 
+html, body {
+  margin: 0;
+  padding: 0; }
+
+header {
+  width: 100vw;
+  max-width: 100vw;
+  min-width: 100vw;
+  background: gray;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap; }
+  header nav ul {
+    list-style-type: none;
+    padding: .75em 0 .75em 1.5em;
+    margin: 0; }
+    header nav ul li {
+      display: inline-block; }
+  header div ul {
+    list-style-type: none;
+    padding: .75em 1.5em .75em 0;
+    margin: 0; }
+    header div ul li {
+      display: inline-block; }
+  header div div {
+    display: none;
+    position: absolute; }
+
+main {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap; }
+
 /*# sourceMappingURL=main.css.map */
