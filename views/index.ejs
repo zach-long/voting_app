@@ -1,7 +1,9 @@
 <% include components/header.ejs %>
 
+  <h1>Voting App</h1>
+
   <div class="main-content">
-    <h3>View all polls</h3>
+    <h3 class="content-header">View all polls</h3>
     <% polls.forEach(function(poll) { %>
       <%- include('components/openPolls', { poll: poll }); %>
     <% }); %>

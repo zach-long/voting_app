@@ -17,5 +17,12 @@ p {
 a {
   font-family: "Open Sans", sans-serif;
   text-decoration: none;
-  color: $linkText;
+  color: $linkTextLight;
+}
+
+main {
+
+  a {
+    color: $linkTextDark;
+  }
 }

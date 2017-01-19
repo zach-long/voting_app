@@ -1,17 +1,42 @@
 #login-form {
   display: none;
   position: absolute;
+  background-color: #ffffff;
   right: 10%;
+  top: 2.9em;
 }
 
 #registration-form {
   display: none;
   position: absolute;
+  background-color: #ffffff;
   width: 20%;
   top: 30%;
   left: 50% - 10%;
 }
 
+.back-button {
+  position: absolute;
+}
+
 button {
 
+}
+
+.poll {
+  border-bottom: 1px solid #CCCCCC;
+  padding: .125em 0 .125em 0;
+  transition: background-color 150ms;
+
+  &:hover {
+    background-color: #CCCCCC;
+  }
+}
+
+.internal {
+  padding-top: .5em;
+}
+
+.caption {
+  padding-top: 1em;
 }

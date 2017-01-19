@@ -1,4 +1,4 @@
-<div>
+<div class="poll userPoll">
   <a href="/poll/vote/<%= poll.pollid %>"><%= poll.name %></a>
   <form method="post" action="/poll/delete/<%= poll.pollid %>">
     <button type="submit" name="<%= poll.pollid %>">Delete</button>

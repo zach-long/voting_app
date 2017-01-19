@@ -39,7 +39,7 @@
      - called from 'addOptionButton' event listener */
   function addInput() {
     let div = document.createElement('div');
-    div.innerHTML = '<label>Option</label><input type="text" name="option">';
+    div.innerHTML = '<label>Option </label><input type="text" name="option">';
     optionsField.insertAdjacentElement('beforeend', div);
   };
 

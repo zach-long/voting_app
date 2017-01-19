@@ -1,14 +1,15 @@
 <% include components/header.ejs %>
 
-  <a href="/u">Go back</a>
+  <h1>Voting App</h1>
+  <a href="/u" class="back-button">Go back</a>
 
   <div class="main-content">
-    <h2><%= poll.name %></h2>
-    <div>
+    <h3 class="content-header"><%= poll.name %></h3>
+    <div class="internal">
       <% poll.options.forEach(function(option) { %>
         <%- include('components/voting_result', {choice: option.choice, votes: option.votes}) %>
       <% }) %>
-      <p>You voted for "<%= vote %>"</p>
+      <p class="caption">You voted for "<%= vote %>"</p>
     </div>
   </div>
 

@@ -71,11 +71,9 @@ router.post('/:pollID', (req, res) => {
       // create a Poll with function from the Model file
       Poll.createPoll(newPoll, (err, poll) => {
         if (err) throw err
-        console.log("Created poll '" + poll + "'.")
 
         Poll.setOwner(req.user, poll, (err, owner) => {
           if (err) throw err
-          console.log("Set " + owner + "to be the owner of " + newPoll)
 
         })
       })
@@ -85,7 +83,6 @@ router.post('/:pollID', (req, res) => {
       res.redirect('/')
     } else {
       // render homepage with error message
-      console.log(req.validationErrors)
       res.render('profile')
     }
 
@@ -104,7 +101,6 @@ router.get('/vote/:pollID', (req, res) => {
     })
 
   } else {
-    console.log("exists")
     res.redirect('/poll/results/' + req.params.pollID)
   }
 })

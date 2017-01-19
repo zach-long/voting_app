@@ -7,10 +7,8 @@ html, body {
 }
 
 header {
-  width: 100vw;
-  max-width: 100vw;
-  min-width: 100vw;
-  background: gray;
+  background: $darkColor;
+  @include fullWidth;
   @include xBrowserFlexRowOutside;
 
   nav {
@@ -22,6 +20,11 @@ header {
 
       li {
         display: inline-block;
+        padding-right: 1em;
+
+        a {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -35,23 +38,54 @@ header {
 
       li {
         display: inline-block;
+        padding-left: 1em;
+
+        p {
+          color: $lightText;
+        }
       }
     }
   }
 }
 
 main {
+  width: 50%;
+  text-align: center;
   flex: 1 1 auto;
-  @include xBrowserFlexColCenter;
+  @include xBrowserFlexColInside;
+
+  h1 {
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
 
   .main-content {
-    padding-top: 10%;
-    @include xBrowserFlexColCenter;
+    background-color: $lightColor;
+    padding-bottom: 1.5em;
+    @include xBrowserFlexColInside;
+    @include sideBorders {
+      border-color: $darkColor;
+    };
+
+    .content-header {
+      padding: .5em 0 .5em 0;
+      border-bottom: 1px solid $lightColorDarker;
+    }
+
+    a {
+      display: block;
+    }
   }
 }
 
 footer {
   padding: .75em 0 .75em 0;
   margin: 0;
+  background-color: $darkerColor;
+  @include fullWidth;
   @include xBrowserFlexRowCenter;
+
+  p {
+    color: $lightText;
+  }
 }

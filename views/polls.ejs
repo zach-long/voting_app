@@ -1,27 +1,30 @@
 <% include components/header.ejs %>
 
-  <a href="/u">Go back</a>
+  <h1>Voting App</h1>
+  <a href="/u" class="back-button">Go back</a>
 
   <div class="main-content">
-    <h2>Make a new poll</h2>
-    <form method="post" action="/poll/<%= pollid %>">
-      <div id="poll-name-wrapper">
-        <label>Poll name</label>
-        <input type="text" placeholder="Name" name="name">
-      </div>
-      <div class="options">
-        <div>
-          <label>Option</label>
-          <input type="text" name="option">
-        </div>
-        <div>
-          <label>Option</label>
-          <input type="text" name="option">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+    <h3 class="content-header">Make a new poll</h3>
     <button id="add-option">Add another option</button>
+    <div class="internal">
+      <form method="post" action="/poll/<%= pollid %>">
+        <div id="poll-name-wrapper">
+          <label>Poll name</label>
+          <input type="text" placeholder="Name" name="name">
+        </div>
+        <div class="options">
+          <div>
+            <label>Option</label>
+            <input type="text" name="option">
+          </div>
+          <div>
+            <label>Option</label>
+            <input type="text" name="option">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
   </div>
 
 <% include components/footer.ejs %>
