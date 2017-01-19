@@ -1,7 +1,7 @@
 #login-form {
   position: absolute;
   background-color: #ffffff;
-  right: 10%;
+  right: .5em;
   top: 2.9em;
   @include xBrowserFlexColInside;
   display: none;
@@ -21,12 +21,34 @@
 }
 
 #registration-form {
-  display: none;
   position: absolute;
-  background-color: #ffffff;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 6px 3px #333;
+  padding: 1%;
   width: 20%;
   top: 30%;
-  left: 50% - 10%;
+  left: 50% - 10% - 1%;
+  @include xBrowserFlexColInside;
+  display: none;
+
+  .modal-header {
+    @include xBrowserFlexRowOutside;
+  }
+
+  form {
+    margin-top: .5em;
+    @include xBrowserFlexColInside;
+
+    div {
+      padding-bottom: .125em;
+      @include xBrowserFlexRowOutside;
+
+      .form-button {
+        margin: 1em auto 0 auto;
+      }
+    }
+  }
 }
 
 .back-button {

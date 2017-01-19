@@ -142,7 +142,7 @@ footer {
 #login-form {
   position: absolute;
   background-color: #ffffff;
-  right: 10%;
+  right: .5em;
   top: 2.9em;
   display: -webkit-flex;
   display: flex;
@@ -199,12 +199,70 @@ footer {
       flex-wrap: nowrap; }
 
 #registration-form {
-  display: none;
   position: absolute;
-  background-color: #ffffff;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 6px 3px #333;
+  padding: 1%;
   width: 20%;
   top: 30%;
-  left: 40%; }
+  left: 39%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  display: none; }
+  #registration-form .modal-header {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap; }
+  #registration-form form {
+    margin-top: .5em;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap; }
+    #registration-form form div {
+      padding-bottom: .125em;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      -webkit-align-items: stretch;
+      align-items: stretch;
+      -webkit-align-content: center;
+      align-content: center;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap; }
+      #registration-form form div .form-button {
+        margin: 1em auto 0 auto; }
 
 .back-button {
   position: absolute; }
