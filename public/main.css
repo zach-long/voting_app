@@ -20,7 +20,7 @@ main a {
   color: #437A98; }
 
 .visible {
-  display: block !important; }
+  display: flex !important; }
 
 html, body {
   margin: 0;
@@ -116,8 +116,6 @@ main {
     main .main-content .content-header {
       padding: .5em 0 .5em 0;
       border-bottom: 1px solid #CCCCCC; }
-    main .main-content a {
-      display: block; }
 
 footer {
   padding: .75em 0 .75em 0;
@@ -142,11 +140,63 @@ footer {
     color: #F2F2F2; }
 
 #login-form {
-  display: none;
   position: absolute;
   background-color: #ffffff;
   right: 10%;
-  top: 2.9em; }
+  top: 2.9em;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  display: none; }
+  #login-form .modal-header {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap; }
+  #login-form form {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap; }
+    #login-form form div {
+      padding-bottom: .125em;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      -webkit-align-items: stretch;
+      align-items: stretch;
+      -webkit-align-content: center;
+      align-content: center;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap; }
 
 #registration-form {
   display: none;
@@ -159,12 +209,45 @@ footer {
 .back-button {
   position: absolute; }
 
+.vote-button {
+  width: 20em;
+  height: 3em;
+  border: none;
+  border-radius: 2px;
+  background-color: #b8d1e0;
+  margin-bottom: .5em;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms; }
+  .vote-button:hover {
+    background-color: #437A98;
+    color: #F2F2F2; }
+  .vote-button:click {
+    background-color: #437A98; }
+
+.form-button {
+  width: 20em;
+  height: 3em;
+  border: none;
+  border-radius: 2px;
+  background-color: #b8d1e0;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms; }
+  .form-button:hover {
+    background-color: #437A98;
+    color: #F2F2F2; }
+
 .poll {
   border-bottom: 1px solid #CCCCCC;
   padding: .125em 0 .125em 0;
   transition: background-color 150ms; }
   .poll:hover {
     background-color: #CCCCCC; }
+  .poll a {
+    display: block; }
+
+.userPoll a {
+  display: inline-block; }
 
 .internal {
   padding-top: .5em; }

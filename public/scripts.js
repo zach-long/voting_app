@@ -59,7 +59,7 @@
      the button from which form was clicked
      - called from 'closeModal' event listener */
   function closeModalForm() {
-    let modalForm = this.parentNode;
+    let modalForm = this.parentNode.parentNode;
     modalForm.classList.remove('visible');
   };
 

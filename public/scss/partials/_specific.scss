@@ -1,9 +1,23 @@
 #login-form {
-  display: none;
   position: absolute;
   background-color: #ffffff;
   right: 10%;
   top: 2.9em;
+  @include xBrowserFlexColInside;
+  display: none;
+
+  .modal-header {
+    @include xBrowserFlexRowOutside;
+  }
+
+  form {
+    @include xBrowserFlexColInside;
+
+    div {
+      padding-bottom: .125em;
+      @include xBrowserFlexRowOutside;
+    }
+  }
 }
 
 #registration-form {
@@ -23,6 +37,39 @@ button {
 
 }
 
+.vote-button {
+  width: 20em;
+  height: 3em;
+  border: none;
+  border-radius: 2px;
+  background-color: $lightBlue;
+  margin-bottom:.5em;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms;
+  &:hover {
+    background-color: $darkColor;
+    color: $lightText;
+  }
+  &:click {
+    background-color: $darkColor;
+  }
+}
+
+.form-button {
+  width: 20em;
+  height: 3em;
+  border: none;
+  border-radius: 2px;
+  background-color: $lightBlue;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms;
+  &:hover {
+    background-color: $darkColor;
+    color: $lightText;
+  }
+}
+
 .poll {
   border-bottom: 1px solid #CCCCCC;
   padding: .125em 0 .125em 0;
@@ -30,6 +77,16 @@ button {
 
   &:hover {
     background-color: #CCCCCC;
+  }
+
+  a {
+    display: block;
+  }
+}
+
+.userPoll {
+  a {
+    display: inline-block;
   }
 }
 
