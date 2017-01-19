@@ -111,8 +111,11 @@ main {
     padding-top: 5%;
     padding-bottom: 5%; }
   main .main-content {
+    max-height: 80%;
+    overflow: scroll;
     background-color: #F2F2F2;
     padding-bottom: 1.5em;
+    margin-bottom: 1em;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -326,6 +329,28 @@ footer {
   .auth-button:hover {
     background-color: #274759;
     color: #F2F2F2; }
+
+#poll-name-wrapper {
+  padding-bottom: .125em; }
+
+.create-poll-form {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap; }
+
+.options {
+  padding-bottom: 1em; }
+  .options div {
+    padding-bottom: .125em; }
 
 .poll {
   border-bottom: 1px solid #CCCCCC;

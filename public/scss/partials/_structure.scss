@@ -67,8 +67,11 @@ main {
   }
 
   .main-content {
+    max-height: 80%;
+    overflow: scroll;
     background-color: $lightColor;
     padding-bottom: 1.5em;
+    margin-bottom: 1em;
     @include xBrowserFlexColInside;
     @include sideBorders {
       border-color: $darkColor;

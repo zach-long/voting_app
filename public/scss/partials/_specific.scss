@@ -100,6 +100,22 @@
   }
 }
 
+#poll-name-wrapper {
+  padding-bottom: .125em;
+}
+
+.create-poll-form {
+  @include xBrowserFlexColCenter;
+}
+
+.options {
+  padding-bottom: 1em;
+
+  div {
+    padding-bottom: .125em;
+  }
+}
+
 .poll {
   border-bottom: 1px solid #CCCCCC;
   padding: .125em 0 .125em 0;
