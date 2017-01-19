@@ -1,8 +1,8 @@
 #login-form {
   position: absolute;
   background-color: #ffffff;
-  right: .5em;
-  top: 2.9em;
+  margin-top: .5em;
+  margin-left: 3.25em;
   @include xBrowserFlexColInside;
   display: none;
 
@@ -53,20 +53,17 @@
 
 .back-button {
   position: absolute;
+  margin-top: .5em;
 }
 
-button {
-
+.button-text {
+  font-size: 1em;
 }
 
 .vote-button {
-  width: 20em;
-  height: 3em;
-  border: none;
-  border-radius: 2px;
-  background-color: $lightBlue;
   margin-bottom:.5em;
   cursor: pointer;
+  @include flatButton(21em, $lightBlue);
   transition: background-color 150ms, color 150ms;
   &:hover {
     background-color: $darkColor;
@@ -78,16 +75,28 @@ button {
 }
 
 .form-button {
-  width: 20em;
-  height: 3em;
-  border: none;
-  border-radius: 2px;
-  background-color: $lightBlue;
   margin: 0;
   cursor: pointer;
+  @include flatButton(21em, $lightBlue);
   transition: background-color 150ms, color 150ms;
   &:hover {
     background-color: $darkColor;
+    color: $lightText;
+  }
+}
+
+.auth-button {
+  padding: .125em 0 .125em 0;
+  margin: 0;
+  cursor: pointer;
+  width: 9em;
+  height: 2em;
+  border: none;
+  border-radius: 2px;
+  background-color: $lightColor;
+  transition: background-color 150ms, color 150ms;
+  &:hover {
+    background-color: $darkerColor;
     color: $lightText;
   }
 }

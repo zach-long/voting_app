@@ -24,8 +24,8 @@
     <div>
       <% if (!user) { %>
       <ul>
-        <li><button id="register">Register</button></li>
-        <li><button class="login">Log in</button></li>
+        <li><button id="register" class="auth-button button-text">Register</button></li>
+        <li><button class="login auth-button button-text">Log in</button></li>
       </ul>
       <div id="registration-form">
         <%- include('partials/register.ejs') %>

@@ -57,24 +57,34 @@ header {
   align-content: center;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap; }
-  header nav ul {
-    list-style-type: none;
-    padding: .75em 0 .75em 1.5em;
-    margin: 0; }
-    header nav ul li {
-      display: inline-block;
-      padding-right: 1em; }
-      header nav ul li a {
-        cursor: pointer; }
-  header div ul {
-    list-style-type: none;
-    padding: .75em 1.5em .75em 0;
-    margin: 0; }
-    header div ul li {
-      display: inline-block;
-      padding-left: 1em; }
-      header div ul li p {
-        color: #F2F2F2; }
+  header nav {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center; }
+    header nav ul {
+      list-style-type: none;
+      padding: 0 0 0 2em;
+      margin: 0; }
+      header nav ul li {
+        display: inline-block;
+        padding-right: 1em; }
+        header nav ul li a {
+          cursor: pointer; }
+  header div {
+    padding-top: .5em;
+    padding-bottom: .5em; }
+    header div ul {
+      list-style-type: none;
+      padding: 0 2em 0 0;
+      margin: 0; }
+      header div ul li {
+        display: inline-block;
+        padding-left: 1em; }
+        header div ul li p {
+          color: #F2F2F2; }
 
 main {
   width: 50%;
@@ -142,8 +152,8 @@ footer {
 #login-form {
   position: absolute;
   background-color: #ffffff;
-  right: .5em;
-  top: 2.9em;
+  margin-top: .5em;
+  margin-left: 3.25em;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
@@ -265,16 +275,20 @@ footer {
         margin: 1em auto 0 auto; }
 
 .back-button {
-  position: absolute; }
+  position: absolute;
+  margin-top: .5em; }
+
+.button-text {
+  font-size: 1em; }
 
 .vote-button {
-  width: 20em;
+  margin-bottom: .5em;
+  cursor: pointer;
+  width: 21em;
   height: 3em;
   border: none;
   border-radius: 2px;
   background-color: #b8d1e0;
-  margin-bottom: .5em;
-  cursor: pointer;
   transition: background-color 150ms, color 150ms; }
   .vote-button:hover {
     background-color: #437A98;
@@ -283,16 +297,30 @@ footer {
     background-color: #437A98; }
 
 .form-button {
-  width: 20em;
+  margin: 0;
+  cursor: pointer;
+  width: 21em;
   height: 3em;
   border: none;
   border-radius: 2px;
   background-color: #b8d1e0;
-  margin: 0;
-  cursor: pointer;
   transition: background-color 150ms, color 150ms; }
   .form-button:hover {
     background-color: #437A98;
+    color: #F2F2F2; }
+
+.auth-button {
+  padding: .125em 0 .125em 0;
+  margin: 0;
+  cursor: pointer;
+  width: 9em;
+  height: 2em;
+  border: none;
+  border-radius: 2px;
+  background-color: #F2F2F2;
+  transition: background-color 150ms, color 150ms; }
+  .auth-button:hover {
+    background-color: #274759;
     color: #F2F2F2; }
 
 .poll {
