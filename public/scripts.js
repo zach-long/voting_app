@@ -28,12 +28,16 @@
   // set event listener to display login form
   loginButton = document.getElementsByClassName('login');
   Array.prototype.filter.call(loginButton, function(button) {
-    button.addEventListener('click', displayLoginForm);
+    button.addEventListener('click', function() {
+      displayModalForm(loginForm, registerForm);
+    });
   });
 
   // set event listener to display registration form
   registerButton = document.getElementById('register');
-  registerButton.addEventListener('click', displayRegistrationForm);
+  registerButton.addEventListener('click', function() {
+    displayModalForm(registerForm, loginForm);
+  });
 
   /* adds another input field to poll creation
      - called from 'addOptionButton' event listener */
@@ -43,16 +47,22 @@
     optionsField.insertAdjacentElement('beforeend', div);
   };
 
-  /* displays the hidden login form
-     - called from 'loginButton' event listener */
-  function displayLoginForm() {
-    loginForm.classList.add('visible');
-  };
-
-  /* displays the hidden registration form
-     - called from 'registerButton' event listener */
-  function displayRegistrationForm() {
-    registerForm.classList.add('visible');
+  /* opens a modal window and closes an already open one
+     - 'windowToOpen' is the modal window being acted on
+     - 'alternateWindow' is the other window which
+        may or may not be open during the request */
+  function displayModalForm(windowToOpen, alternateWindow) {
+    // if another modal window is open, close it
+    if (alternateWindow.classList.contains('visible')) {
+      alternateWindow.classList.remove('visible');
+    };
+    // if this window is already open, close it
+    if (windowToOpen.classList.contains('visible')) {
+      windowToOpen.classList.remove('visible');
+      return;
+    };
+    // open
+    windowToOpen.classList.add('visible');
   };
 
   /* closes open form, login or register, respective to
