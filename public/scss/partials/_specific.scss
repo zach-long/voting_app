@@ -63,7 +63,7 @@
 .vote-button {
   margin-bottom:.5em;
   cursor: pointer;
-  @include flatButton(21em, $lightBlue);
+  @include flatButton(21em, 3em, $lightBlue);
   transition: background-color 150ms, color 150ms;
   &:hover {
     background-color: $darkColor;
@@ -74,10 +74,21 @@
   }
 }
 
+.delete-button {
+  margin: 0;
+  cursor: pointer;
+  margin-right: .5em;
+  @include flatButton(7em, 2em, $lightRed);
+  transition: background-color 150ms;
+  &:hover {
+    background-color: $brightRed;
+  }
+}
+
 .form-button {
   margin: 0;
   cursor: pointer;
-  @include flatButton(21em, $lightBlue);
+  @include flatButton(21em, 3em, $lightBlue);
   transition: background-color 150ms, color 150ms;
   &:hover {
     background-color: $darkColor;
@@ -131,8 +142,29 @@
 }
 
 .userPoll {
+  border-bottom: 1px solid #CCCCCC;
+  height: $userPollHeight;
+  position: relative;
+
   a {
     display: inline-block;
+    line-height: 2em;
+    transition: color 150ms;
+    &:hover {
+      color: $darkerColor;
+    }
+  }
+}
+
+.form-container {
+  height: $userPollHeight;
+  position: absolute;
+  right: 0;
+  display: inline-block;
+
+  form {
+    height: 100%;
+    @include centeredVertically;
   }
 }
 

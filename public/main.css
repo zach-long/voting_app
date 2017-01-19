@@ -304,6 +304,19 @@ footer {
   .vote-button:click {
     background-color: #437A98; }
 
+.delete-button {
+  margin: 0;
+  cursor: pointer;
+  margin-right: .5em;
+  width: 7em;
+  height: 2em;
+  border: none;
+  border-radius: 2px;
+  background-color: #F09784;
+  transition: background-color 150ms; }
+  .delete-button:hover {
+    background-color: #F34B27; }
+
 .form-button {
   margin: 0;
   cursor: pointer;
@@ -361,8 +374,30 @@ footer {
   .poll a {
     display: block; }
 
-.userPoll a {
+.userPoll {
+  border-bottom: 1px solid #CCCCCC;
+  height: 2em;
+  position: relative; }
+  .userPoll a {
+    display: inline-block;
+    line-height: 2em;
+    transition: color 150ms; }
+    .userPoll a:hover {
+      color: #274759; }
+
+.form-container {
+  height: 2em;
+  position: absolute;
+  right: 0;
   display: inline-block; }
+  .form-container form {
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center; }
 
 .internal {
   padding-top: .5em; }

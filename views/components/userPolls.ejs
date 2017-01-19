@@ -1,6 +1,8 @@
-<div class="poll userPoll">
+<div class="userPoll">
   <a href="/poll/vote/<%= poll.pollid %>"><%= poll.name %></a>
-  <form method="post" action="/poll/delete/<%= poll.pollid %>">
-    <button type="submit" name="<%= poll.pollid %>">Delete</button>
-  </form>
+  <div class="form-container">
+    <form method="post" action="/poll/delete/<%= poll.pollid %>">
+      <button class="delete-button" type="submit" name="<%= poll.pollid %>">Delete</button>
+    </form>
+  </div>
 </div>

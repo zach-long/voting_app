@@ -79,9 +79,9 @@
   @content;
 }
 
-@mixin flatButton($width, $bgcolor) {
+@mixin flatButton($width, $height, $bgcolor) {
   width: $width;
-  height: $width / 7;
+  height: $height;
   border: none;
   border-radius: 2px;
   background-color: $bgcolor;
