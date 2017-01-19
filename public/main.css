@@ -42,6 +42,7 @@ html, body {
 
 header {
   background: #437A98;
+  height: 3em;
   min-width: 100vw;
   width: 100vw;
   max-width: 100vw;
@@ -74,8 +75,12 @@ header {
         header nav ul li a {
           cursor: pointer; }
   header div {
-    padding-top: .5em;
-    padding-bottom: .5em; }
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center; }
     header div ul {
       list-style-type: none;
       padding: 0 2em 0 0;
@@ -152,7 +157,7 @@ footer {
 #login-form {
   position: absolute;
   background-color: #ffffff;
-  margin-top: .5em;
+  margin-top: 5em;
   margin-left: 3.25em;
   display: -webkit-flex;
   display: flex;
@@ -310,7 +315,6 @@ footer {
     color: #F2F2F2; }
 
 .auth-button {
-  padding: .125em 0 .125em 0;
   margin: 0;
   cursor: pointer;
   width: 9em;

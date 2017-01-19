@@ -8,6 +8,7 @@ html, body {
 
 header {
   background: $darkColor;
+  height: 3em;
   @include fullWidth;
   @include xBrowserFlexRowOutside;
 
@@ -35,8 +36,7 @@ header {
   }
 
   div {
-    padding-top: .5em;
-    padding-bottom: .5em;
+    @include centeredVertically;
 
     ul {
       list-style-type: none;
