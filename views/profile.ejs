@@ -12,7 +12,9 @@
   <div class="main-content">
     <h3 class="content-header">All polls</h3>
     <% openPolls.forEach(function(poll) { %>
-      <%- include('components/openPolls', { openPoll: poll }); %>
+      <% if (String(poll.creator) !== String(user._id)) { %>
+        <%- include('components/openPolls', { openPoll: poll }); %>
+      <% }; %>
     <% }); %>
   </div>
 
