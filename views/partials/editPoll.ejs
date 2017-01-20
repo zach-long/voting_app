@@ -1,0 +1,24 @@
+<% console.log(poll) %>
+
+<h3 class="content-header">Edit your poll</h3>
+<div class="internal">
+  <form class="create-poll-form" method="put" action="/poll/edit/<%= poll.pollid %>">
+    <div id="poll-name-wrapper">
+      <label>Poll name</label>
+      <input type="text" placeholder="<%= poll.name %>" name="name">
+    </div>
+    <div class="options">
+      <% poll.options.forEach(function(option) { %>
+        <%- include('../components/editPollOption', {option: option.choice}); %>
+      <% }); %>
+    </div>
+    <div>
+      <label>Privacy</label>
+      <input type="radio" name="private">
+      <p>Private</p>
+      <input type="radio" name="public">
+      <p>Public</p>
+    </div>
+    <button class="form-button" type="submit">Submit</button>
+  </form>
+</div>

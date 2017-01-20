@@ -189,6 +189,22 @@ router.post('/delete/:pollID', (req, res) => {
   }
 })
 
+// route for user to edit a poll
+router.get('/edit/:pollID', (req, res) => {
+  if (req.user) {
+
+    let thePollID = req.params.pollID
+    console.log("Looking for " + thePollID)
+    Poll.getPollByPollID(thePollID, (err, thePoll) => {
+      console.log("GET request found " + thePoll)
+      res.render('polls', {poll: thePoll})
+    })
+
+  } else {
+    res.redirect('/')
+  }
+})
+
 // generates a random number, used as a poll ID
 function generateRandomNumber() {
   let randomNumber = Math.floor(Math.random() * 999999).toString()
