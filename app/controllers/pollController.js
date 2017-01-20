@@ -107,7 +107,7 @@ router.get('/vote/:pollID', (req, res) => {
     Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
       if (err) throw err
       //res.locals.poll = thePoll
-      res.render('vote', {poll: thePoll})
+      res.render('vote', {poll: thePoll, req: req})
     })
 
   } else {
@@ -153,7 +153,7 @@ router.get('/results/:pollID', (req, res) => {
     Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
       if (err) throw err
 
-      res.render('results', {poll: thePoll, vote: userVote})
+      res.render('results', {poll: thePoll, vote: userVote, req: req})
     })
 
   } else {

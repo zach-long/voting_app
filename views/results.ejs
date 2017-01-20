@@ -12,4 +12,13 @@
     </div>
   </div>
 
+  <!-- owner section -->
+  <% if ((user) && (String(poll.creator) === String(user._id))) { %>
+
+    <% if (poll.privacy === 'private') { %>
+      <p>Send this link to a friend: <%= req.hostname + req.originalUrl %></p>
+    <% }; %>
+
+  <% }; %>
+
 <% include components/footer.ejs %>

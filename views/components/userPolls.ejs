@@ -1,7 +1,9 @@
 <div class="userPoll">
 
   <% if (userPoll.privacy === 'private') { %>
-    <p>private</p>
+    <div class="private-tag">
+      <p>private</p>
+    </div>
   <% }; %>
 
   <a href="/poll/vote/<%= userPoll.pollid %>"><%= userPoll.name %></a>

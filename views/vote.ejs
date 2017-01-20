@@ -7,10 +7,19 @@
     <div class="internal">
       <form class="vote-form" method="post" action="/poll/vote/<%= poll.pollid %>">
         <% poll.options.forEach(function(option) { %>
-          <%- include('components/voting_option', {choice: option.choice}) %>
-        <% }) %>
+          <%- include('components/voting_option', {choice: option.choice}); %>
+        <% }); %>
       </form>
     </div>
   </div>
+
+  <!-- owner section -->
+  <% if ((user) && (String(poll.creator) === String(user._id))) { %>
+
+    <% if (poll.privacy === 'private') { %>
+      <p>Send this link to a friend: <%= req.hostname + req.originalUrl %></p>
+    <% }; %>
+
+  <% }; %>
 
 <% include components/footer.ejs %>
