@@ -14,8 +14,8 @@
   <div class="main-content">
     <h3 class="content-header">All polls</h3>
     <% openPolls.forEach(function(poll) { %>
-      <% if ((String(poll.creator) !== String(user._id)) ||
-            ((poll.privacy !== 'private') && (String(poll.creator) !== String(user._id)))) { %>
+      <% if ((String(poll.creator) !== String(user._id)) &&
+            (poll.privacy !== 'private')) { %>
         <%- include('components/openPolls', { openPoll: poll }); %>
       <% }; %>
     <% }); %>
