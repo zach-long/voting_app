@@ -74,10 +74,21 @@
   }
 }
 
+.edit-button {
+  margin: 0;
+  margin-right: .5em;
+  cursor: pointer;
+  @include flatButton(7em, 2em, $yellow);
+  transition: background-color 150ms;
+  &:hover {
+    background-color: $darkYellow;
+  }
+}
+
 .delete-button {
   margin: 0;
-  cursor: pointer;
   margin-right: .5em;
+  cursor: pointer;
   @include flatButton(7em, 2em, $lightRed);
   transition: background-color 150ms;
   &:hover {
@@ -159,8 +170,8 @@
 .form-container {
   height: $userPollHeight;
   position: absolute;
+  display: inline-flex;
   right: 0;
-  display: inline-block;
 
   form {
     height: 100%;
@@ -219,6 +230,14 @@
   }
 }
 
+.private-tag {
+  @include centeredVertically;
+  display: inline-flex;
+  position: absolute;
+  left: 0;
+  height: $userPollHeight;
+  margin-left: .5em;
+}
 
 .message-inner {
   padding: .125em 0 .125em 0;

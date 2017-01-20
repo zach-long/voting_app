@@ -85,7 +85,6 @@ passport.use(new LocalStrategy((username, password, done) => {
       if (isMatch) {
         return done(null, user)
       } else {
-        res.locals.invalidLogin = 'Invalid password'
         return done(null, false, {message: 'Invalid password'})
       }
     })

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     Poll.getPolls((err, polls) => {
       if (err) throw err
 
-      res.render('index', {openPolls: polls})
+      res.render('index', {openPolls: polls, req: req})
     })
 
   } else {

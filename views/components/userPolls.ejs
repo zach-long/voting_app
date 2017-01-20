@@ -7,9 +7,14 @@
   <% }; %>
 
   <a href="/poll/vote/<%= userPoll.pollid %>"><%= userPoll.name %></a>
-  <div class="form-container">
+  
+  <div class="form-container delete-container">
+    <form method="" action"">
+      <button class="edit-button" type="submit" name="">Edit</button>
+    </form>
     <form method="post" action="/poll/delete/<%= userPoll.pollid %>">
       <button class="delete-button" type="submit" name="<%= userPoll.pollid %>">Delete</button>
     </form>
   </div>
+
 </div>

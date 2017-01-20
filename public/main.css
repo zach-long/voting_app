@@ -295,7 +295,7 @@ footer {
   height: 3em;
   border: none;
   border-radius: 2px;
-  background-color: #b8d1e0;
+  background-color: #B8D1E0;
   transition: background-color 150ms, color 150ms; }
   .vote-button:hover {
     background-color: #437A98;
@@ -303,10 +303,23 @@ footer {
   .vote-button:click {
     background-color: #437A98; }
 
+.edit-button {
+  margin: 0;
+  margin-right: .5em;
+  cursor: pointer;
+  width: 7em;
+  height: 2em;
+  border: none;
+  border-radius: 2px;
+  background-color: #F5DF7B;
+  transition: background-color 150ms; }
+  .edit-button:hover {
+    background-color: #D9B310; }
+
 .delete-button {
   margin: 0;
-  cursor: pointer;
   margin-right: .5em;
+  cursor: pointer;
   width: 7em;
   height: 2em;
   border: none;
@@ -323,7 +336,7 @@ footer {
   height: 3em;
   border: none;
   border-radius: 2px;
-  background-color: #b8d1e0;
+  background-color: #B8D1E0;
   transition: background-color 150ms, color 150ms; }
   .form-button:hover {
     background-color: #437A98;
@@ -387,8 +400,8 @@ footer {
 .form-container {
   height: 2em;
   position: absolute;
-  right: 0;
-  display: inline-block; }
+  display: inline-flex;
+  right: 0; }
   .form-container form {
     height: 100%;
     display: -webkit-flex;
@@ -430,11 +443,24 @@ footer {
   .message .login {
     display: block;
     margin: auto;
-    background-color: #b8d1e0;
+    background-color: #B8D1E0;
     transition: background-color 150ms, color 150ms; }
     .message .login:hover {
       background-color: #437A98;
       color: #F2F2F2; }
+
+.private-tag {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: inline-flex;
+  position: absolute;
+  left: 0;
+  height: 2em;
+  margin-left: .5em; }
 
 .message-inner {
   padding: .125em 0 .125em 0;
