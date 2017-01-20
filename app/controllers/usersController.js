@@ -24,12 +24,18 @@ router.get('/', (req, res) => {
   }
 })
 
-// handle a a POST request to register a user
+// redirect nonexistant GETs
+router.get('/register', (req, res) => {
+  res.redirect('/')
+})
+router.get('/login', (req, res) => {
+  res.redirect('/')
+})
+
+// handle a POST request to register a user
 router.post('/register', (req, res) => {
   // validate user
   req.checkBody('name', 'You must enter a name').notEmpty()
-  req.checkBody('email', 'You must enter an email').notEmpty()
-  req.checkBody('email', 'You must enter a valid email').isEmail()
   req.checkBody('username', 'You must enter a username').notEmpty()
   req.checkBody('password', 'You must enter a password').notEmpty()
   req.checkBody('password2', 'The passwords you entered do not match').equals(req.body.password)
@@ -39,7 +45,6 @@ router.post('/register', (req, res) => {
     // instantiate a User
     var newUser = new User({
       name: req.body.name,
-      email: req.body.email,
       username: req.body.username,
       password: req.body.password
     })
@@ -55,7 +60,12 @@ router.post('/register', (req, res) => {
     res.redirect('/')
   } else {
     // render homepage with errors display
-    res.render('index', {errors: req.validationErrors})
+    Poll.getPolls((err, polls) => {
+      req.getValidationResult().then((result) => {
+        res.render('index', {openPolls: polls, errors: result.array()})
+      })
+      //res.render('index', {openPolls: polls, errors: req.validationErrors})
+    })
   }
 })
 

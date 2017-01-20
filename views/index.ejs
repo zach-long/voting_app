@@ -1,6 +1,13 @@
 <% include components/header.ejs %>
 
-  <h1>Voting App</h1>
+  <% if (typeof errors!='undefined') { %>
+    <div class="error-messages">
+    <h3>Account creation unsuccessful</h3>
+    <% errors.forEach(function(error) { %>
+      <p><%= error.msg %></p>
+    <% }); %>
+    </div>
+  <% }; %>
 
   <div class="main-content">
     <h3 class="content-header">View all polls</h3>

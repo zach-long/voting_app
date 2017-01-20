@@ -405,4 +405,16 @@ footer {
 .caption {
   padding-top: 1em; }
 
+.error-messages {
+  padding-bottom: 1em; }
+  .error-messages h3 {
+    margin-bottom: .25em;
+    padding-left: .5em;
+    padding-right: .5em;
+    display: inline-block;
+    border-bottom: 1px solid #333;
+    color: #A71D00; }
+  .error-messages p {
+    color: #A71D00; }
+
 /*# sourceMappingURL=main.css.map */
