@@ -70,7 +70,7 @@ router.post('/register', (req, res) => {
 })
 
 // defines the local strategy used for user authentication
-passport.use(new LocalStrategy((username, password, done) => {
+passport.use('local', new LocalStrategy((username, password, done) => {
   // check the database for the username
   User.getUserByUsername(username, (err, user) => {
     if (err) throw err
@@ -85,7 +85,7 @@ passport.use(new LocalStrategy((username, password, done) => {
       if (isMatch) {
         return done(null, user)
       } else {
-        return done(null, false, {message: 'Invalid password'})
+        return done(null, false, {message: 'Incorrect password'})
       }
     })
 
@@ -108,7 +108,8 @@ passport.deserializeUser((id, done) => {
 router.post('/login',
 passport.authenticate('local', {
   successRedirect: '/u',
-  failureRedirect: '/'
+  failureRedirect: '/',
+  failureFlash: true
 }))
 
 // logs the user out

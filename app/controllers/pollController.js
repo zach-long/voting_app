@@ -253,6 +253,7 @@ router.post('/edit/:pollID', (req, res) => {
     }
 
     Poll.updatePoll(thePoll, (err, updatedPoll) => {
+      
       res.redirect('/u')
     })
   })
