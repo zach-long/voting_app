@@ -7,7 +7,6 @@ const ejs = require('ejs')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
-const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
@@ -70,14 +69,8 @@ app.use(expressValidator({
   }
 }))
 
-// flash
-app.use(flash())
-
 // reporting variables
 app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success-msg')
-  res.locals.error_msg = req.flash('error_msg')
-  res.locals.error = req.flash('error')
   res.locals.user = req.user || null
   next()
 })

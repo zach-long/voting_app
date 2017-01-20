@@ -2,9 +2,13 @@
 
   <div class="main-content">
     <h3 class="content-header">Your polls</h3>
+    <% if (userPolls.length < 1) { %>
+      <p class="message-inner underlined">You have no polls, <a href="/poll">create one now!</a></p>
+    <% } else { %>
     <% userPolls.forEach(function(poll) { %>
       <%- include('components/userPolls', { userPoll: poll }); %>
-    <% }); %>
+      <% }); %>
+    <% }; %>
   </div>
 
   <div class="main-content">

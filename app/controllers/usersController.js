@@ -52,19 +52,19 @@ router.post('/register', (req, res) => {
     // create a User with function from the Model file
     User.createUser(newUser, (err, user) => {
       if (err) throw err
-      console.log("Created user '" + user + "'.")
     })
 
     // display a success message and go to root
-    req.flash('success_msg', 'Registration successful!')
-    res.redirect('/')
+    let successMsg = "Account created successfully!"
+    Poll.getPolls((err, polls) => {
+      res.render('index', {openPolls: polls, message: successMsg})
+    })
   } else {
     // render homepage with errors display
     Poll.getPolls((err, polls) => {
       req.getValidationResult().then((result) => {
         res.render('index', {openPolls: polls, errors: result.array()})
       })
-      //res.render('index', {openPolls: polls, errors: req.validationErrors})
     })
   }
 })
@@ -85,6 +85,7 @@ passport.use(new LocalStrategy((username, password, done) => {
       if (isMatch) {
         return done(null, user)
       } else {
+        res.locals.invalidLogin = 'Invalid password'
         return done(null, false, {message: 'Invalid password'})
       }
     })

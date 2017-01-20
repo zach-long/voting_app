@@ -70,7 +70,7 @@ main {
     max-height: 80%;
     overflow: scroll;
     background-color: $lightColor;
-    padding-bottom: 1.5em;
+    //padding-bottom: 1.5em;
     margin-bottom: 1em;
     @include xBrowserFlexColInside;
     @include sideBorders {

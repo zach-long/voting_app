@@ -79,7 +79,6 @@ router.post('/:pollID', (req, res) => {
       })
 
       // display a success message and go to root
-      req.flash('success_msg', 'Poll created successfully!')
       res.redirect('/')
     } else {
       // render homepage with error message
