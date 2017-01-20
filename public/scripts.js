@@ -8,10 +8,13 @@
   var loginButton;
   var registerButton;
   var closeModal;
+  var checkboxes;
   // define globals
   var optionsField = document.getElementsByClassName('options')[0];
   var loginForm = document.getElementById('login-form');
   var registerForm = document.getElementById('registration-form');
+  var privateButton = document.getElementsByClassName('checkbox')['private']
+  var publicButton = document.getElementsByClassName('checkbox')['public']
 
   // set event listener to add button functionality
   if (document.getElementById('add-option') !== null) {
@@ -42,6 +45,16 @@
     registerButton = document.getElementById('register');
     registerButton.addEventListener('click', function() {
       displayModalForm(registerForm, loginForm);
+    });
+  };
+
+  // set event listner for checkboxes
+  if (document.getElementsByClassName('checkbox') !== null) {
+    checkboxes = document.getElementsByClassName('checkbox');
+    Array.prototype.filter.call(checkboxes, function(checkbox) {
+      checkbox.addEventListener('click', function() {
+        syncronizeCheckboxes(this, privateButton, publicButton);
+      });
     });
   };
 
@@ -77,6 +90,13 @@
   function closeModalForm() {
     let modalForm = this.parentNode.parentNode;
     modalForm.classList.remove('visible');
+  };
+
+  // unchecks a checkbox if one is already checked
+  function syncronizeCheckboxes(clicked, pri, pub) {
+    pri.checked = false;
+    pub.checked = false;
+    clicked.checked = true;
   };
 
 }());
