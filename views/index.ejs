@@ -16,12 +16,12 @@
     </div>
   <% }; %>
 
-
-
   <div class="main-content">
     <h3 class="content-header">View all polls</h3>
     <% openPolls.forEach(function(poll) { %>
-      <%- include('components/openPolls', { openPoll: poll }); %>
+      <% if (poll.privacy !== 'private') { %>
+        <%- include('components/openPolls', { openPoll: poll }); %>
+      <% } %>
     <% }); %>
   </div>
 

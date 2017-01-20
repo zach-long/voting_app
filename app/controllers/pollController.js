@@ -46,7 +46,6 @@ router.get('/:pollID', (req, res) => {
 // saves poll to the DB
 router.post('/:pollID', (req, res) => {
   if (req.user) {
-console.log(req.body)
     // validate poll integrity
     req.checkBody('name', 'You must enter a name').notEmpty()
 

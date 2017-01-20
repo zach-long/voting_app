@@ -1,4 +1,9 @@
 <div class="userPoll">
+
+  <% if (userPoll.privacy === 'private') { %>
+    <p>private</p>
+  <% }; %>
+
   <a href="/poll/vote/<%= userPoll.pollid %>"><%= userPoll.name %></a>
   <div class="form-container">
     <form method="post" action="/poll/delete/<%= userPoll.pollid %>">
