@@ -7,6 +7,7 @@ const User = require('./users.js')
 var PollModel = mongoose.Schema({
   creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   pollid: String,
+  privacy: String,
   name: String,
   options: Array
 })

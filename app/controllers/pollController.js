@@ -46,9 +46,20 @@ router.get('/:pollID', (req, res) => {
 // saves poll to the DB
 router.post('/:pollID', (req, res) => {
   if (req.user) {
-
+console.log(req.body)
     // validate poll integrity
     req.checkBody('name', 'You must enter a name').notEmpty()
+
+    // set poll privacy level
+    let privacyLevel;
+    if (req.body.private === 'on') {
+      privacyLevel = 'private'
+    } else if (req.body.public === 'on') {
+      privacyLevel = 'public'
+    } else {
+      alert('An unknown error has occured')
+      return;
+    }
 
     // handles logic based on validation
     if (!req.validationErrors()) {
@@ -56,6 +67,7 @@ router.post('/:pollID', (req, res) => {
       var newPoll = new Poll({
         creator: req.user._id,
         pollid: req.params.pollID,
+        privacy: privacyLevel,
         name: req.body.name
       })
       /* set the poll 'options' to an array of objects,
