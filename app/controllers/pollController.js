@@ -165,25 +165,37 @@ router.get('/results/:pollID', (req, res) => {
 router.post('/delete/:pollID', (req, res) => {
   if (req.user) {
     let thePollID = Object.keys(req.body)[0]
-    Poll.findOneAndRemove({ pollid: thePollID }, (err, poll) => {
-      if (err) throw err
 
-      let deletedPoll = poll._id
-      let userPollRefs = req.user.polls
-      for (let i = 0; i < userPollRefs.length; i++) {
+    // query poll twice, bad bad bad, hack
+    Poll.getPollByPollID(thePollID, (err, thePoll) => {
+      if (String(req.user._id) === String(thePoll.creator)) {
 
-        let pollRef = userPollRefs[i]
-        if (String(deletedPoll) == String(pollRef)) {
-          let index = userPollRefs.indexOf(deletedPoll)
-          Poll.updateOwner(req.user._id, req.user.polls, index, deletedPoll, (err, owner) => {
+        Poll.findOneAndRemove({ pollid: thePoll.pollid }, (err, poll) => {
+          if (err) throw err
 
-          })
-        }
+          let deletedPoll = poll._id
+          let userPollRefs = req.user.polls
+          for (let i = 0; i < userPollRefs.length; i++) {
 
+            let pollRef = userPollRefs[i]
+            if (String(deletedPoll) == String(pollRef)) {
+              let index = userPollRefs.indexOf(deletedPoll)
+              Poll.updateOwner(req.user._id, req.user.polls, index, deletedPoll, (err, owner) => {
+
+              })
+            }
+
+          }
+          res.redirect('/u')
+        })
+
+      // redirect if not the poll owner
+      } else {
+        res.redirect('/')
       }
-      res.redirect('/u')
     })
 
+  // redirect if not logged in
   } else {
     res.redirect('/')
   }
@@ -192,12 +204,17 @@ router.post('/delete/:pollID', (req, res) => {
 // route for user to edit a poll
 router.get('/edit/:pollID', (req, res) => {
   if (req.user) {
-
     let thePollID = req.params.pollID
-    console.log("Looking for " + thePollID)
+
+    // find the poll to edit
     Poll.getPollByPollID(thePollID, (err, thePoll) => {
-      console.log("GET request found " + thePoll)
-      res.render('polls', {poll: thePoll})
+      // make sure the poll is being accessed by the creator
+      if (String(req.user._id) === String(thePoll.creator)) {
+        res.render('polls', {poll: thePoll})
+
+      } else {
+        res.redirect('/')
+      }
     })
 
   } else {
