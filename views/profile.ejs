@@ -3,9 +3,16 @@
   <h1>Voting App</h1>
 
   <div class="main-content">
-    <h3 class="content-header">See your polls</h3>
-    <% polls.forEach(function(poll) { %>
-      <%- include('components/userPolls', { poll: poll }); %>
+    <h3 class="content-header">Your polls</h3>
+    <% userPolls.forEach(function(poll) { %>
+      <%- include('components/userPolls', { userPoll: poll }); %>
+    <% }); %>
+  </div>
+
+  <div class="main-content">
+    <h3 class="content-header">All polls</h3>
+    <% openPolls.forEach(function(poll) { %>
+      <%- include('components/openPolls', { openPoll: poll }); %>
     <% }); %>
   </div>
 

@@ -13,31 +13,37 @@
   var loginForm = document.getElementById('login-form');
   var registerForm = document.getElementById('registration-form');
 
+  // set event listener to add button functionality
   if (document.getElementById('add-option') !== null) {
-    // set event listener to add button functionality
     addOptionButton = document.getElementById('add-option');
     addOptionButton.addEventListener('click', addInput);
   };
 
   // set event listner for button to close a form
-  closeModal = document.getElementsByClassName('dismiss');
-  Array.prototype.filter.call(closeModal, function(dismissButton) {
-    dismissButton.addEventListener('click', closeModalForm);
-  });
+  if (document.getElementsByClassName('dismiss') !== null) {
+    closeModal = document.getElementsByClassName('dismiss');
+    Array.prototype.filter.call(closeModal, function(dismissButton) {
+      dismissButton.addEventListener('click', closeModalForm);
+    });
+  };
 
   // set event listener to display login form
-  loginButton = document.getElementsByClassName('login');
-  Array.prototype.filter.call(loginButton, function(button) {
-    button.addEventListener('click', function() {
-      displayModalForm(loginForm, registerForm);
+  if (document.getElementsByClassName('login') !== null) {
+    loginButton = document.getElementsByClassName('login');
+    Array.prototype.filter.call(loginButton, function(button) {
+      button.addEventListener('click', function() {
+        displayModalForm(loginForm, registerForm);
+      });
     });
-  });
+  };
 
   // set event listener to display registration form
-  registerButton = document.getElementById('register');
-  registerButton.addEventListener('click', function() {
-    displayModalForm(registerForm, loginForm);
-  });
+  if (document.getElementById('register') !== null) {
+    registerButton = document.getElementById('register');
+    registerButton.addEventListener('click', function() {
+      displayModalForm(registerForm, loginForm);
+    });
+  };
 
   /* adds another input field to poll creation
      - called from 'addOptionButton' event listener */

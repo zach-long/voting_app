@@ -9,7 +9,7 @@
       <% poll.options.forEach(function(option) { %>
         <%- include('components/voting_result', {choice: option.choice, votes: option.votes}) %>
       <% }) %>
-      <p class="caption">You voted for "<%= vote %>"</p>
+      <p class="caption">You voted "<b><%= vote %></b>"</p>
     </div>
   </div>
 

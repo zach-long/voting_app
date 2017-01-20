@@ -12,9 +12,8 @@ router.get('/', (req, res) => {
   if (!req.user) {
     Poll.getPolls((err, polls) => {
       if (err) throw err
-      //console.log("Polls retrieved from DB: " + polls)
 
-      res.render('index', {polls: polls})
+      res.render('index', {openPolls: polls})
     })
 
   } else {

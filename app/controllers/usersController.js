@@ -11,10 +11,14 @@ const Poll = require('../models/polls.js')
 // set user root path to '/u'
 router.get('/', (req, res) => {
   if (req.user) {
-    Poll.findPollsByCreator(req.user._id, (err, polls) => {
-      res.render('profile', {polls: polls, deletedPollName: false})
+    Poll.getPolls((err, polls) => {
+      let openPolls = polls
+
+      Poll.findPollsByCreator(req.user._id, (err, userPolls) => {
+        res.render('profile', {openPolls: openPolls, userPolls: userPolls})
+      })
     })
-    
+
   } else {
     res.redirect('/')
   }

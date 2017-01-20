@@ -12,7 +12,7 @@ const session = require('express-session')
 const passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 const mongodb = require('mongodb')
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 // connect database and save reference
 mongoose.connect('mongodb://localhost/voting_db', (err) => {

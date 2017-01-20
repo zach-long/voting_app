@@ -4,8 +4,8 @@
 
   <div class="main-content">
     <h3 class="content-header">View all polls</h3>
-    <% polls.forEach(function(poll) { %>
-      <%- include('components/openPolls', { poll: poll }); %>
+    <% openPolls.forEach(function(poll) { %>
+      <%- include('components/openPolls', { openPoll: poll }); %>
     <% }); %>
   </div>
 
