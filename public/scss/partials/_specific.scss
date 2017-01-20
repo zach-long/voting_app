@@ -128,14 +128,22 @@
 
 .create-poll-form {
   @include xBrowserFlexColCenter;
+
+  h4 {
+    border-bottom: 1px solid $darkText;
+  }
 }
 
 .options {
-  padding-bottom: 1em;
+  padding-bottom: .25em;
 
   div {
     padding-bottom: .125em;
   }
+}
+
+.privacy {
+  padding-bottom: 1em;
 }
 
 .poll {
@@ -242,4 +250,15 @@
 .message-inner {
   padding: .125em 0 .125em 0;
   @include underlined(#ccc);
+}
+
+.checkbox-field {
+
+  input {
+    display: inline-block;
+  }
+
+  p {
+    display: inline-block;
+  }
 }

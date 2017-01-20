@@ -11,20 +11,24 @@
         <%- include('../components/editPollOption', {option: option.choice}); %>
       <% }); %>
     </div>
-    <div>
-      <label>Privacy</label>
-      <% if (poll.privacy == 'private') { %>
-        <input type="checkbox" name="private" checked>
-      <% } else { %>
-        <input type="checkbox" name="private">
-      <% }; %>
-      <p>Private</p>
-      <% if (poll.privacy == 'public') { %>
-        <input type="checkbox" name="public" checked>
-      <% } else { %>
-        <input type="checkbox" name="public">
-      <% }; %>
-      <p>Public</p>
+    <div class="privacy">
+      <h4>Privacy</h4>
+      <div class="checkbox-field">
+        <p>Private</p>
+        <% if (poll.privacy == 'private') { %>
+          <input class="checkbox" type="checkbox" name="private" checked>
+        <% } else { %>
+          <input class="checkbox" type="checkbox" name="private">
+        <% }; %>
+      </div>
+      <div class="checkbox-field">
+        <p>Public</p>
+        <% if (poll.privacy == 'public') { %>
+          <input class="checkbox" type="checkbox" name="public" checked>
+        <% } else { %>
+          <input class="checkbox" type="checkbox" name="public">
+        <% }; %>
+      </div>
     </div>
     <button class="form-button" type="submit">Submit</button>
   </form>

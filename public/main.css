@@ -371,11 +371,16 @@ footer {
   align-content: center;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap; }
+  .create-poll-form h4 {
+    border-bottom: 1px solid #333333; }
 
 .options {
-  padding-bottom: 1em; }
+  padding-bottom: .25em; }
   .options div {
     padding-bottom: .125em; }
+
+.privacy {
+  padding-bottom: 1em; }
 
 .poll {
   border-bottom: 1px solid #CCCCCC;
@@ -465,5 +470,10 @@ footer {
 .message-inner {
   padding: .125em 0 .125em 0;
   border-bottom: 1px solid #ccc; }
+
+.checkbox-field input {
+  display: inline-block; }
+.checkbox-field p {
+  display: inline-block; }
 
 /*# sourceMappingURL=main.css.map */
