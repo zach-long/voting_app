@@ -129,7 +129,7 @@ router.post('/vote/:pollID', (req, res) => {
       if (err) throw err
 
       // update poll in DB
-      Poll.updatePoll(updatedPoll, (err, savedPoll) => {
+      Poll.updatePollOptions(updatedPoll, (err, savedPoll) => {
         if (err) throw err
 
         // store cookie to register this user has voted
@@ -220,6 +220,42 @@ router.get('/edit/:pollID', (req, res) => {
   } else {
     res.redirect('/')
   }
+})
+
+// post request to update an edited poll
+router.post('/edit/:pollID', (req, res) => {
+
+  let thePollID = req.params.pollID
+  Poll.getPollByPollID(thePollID, (err, thePoll) => {
+    // set poll privacy level
+    let privacyLevel;
+    if (req.body.private === 'on') {
+      privacyLevel = 'private'
+    } else if (req.body.public === 'on') {
+      privacyLevel = 'public'
+    } else {
+      alert('An unknown error has occured')
+      return;
+    }
+
+    // update poll values
+    thePoll.privacy = privacyLevel,
+    thePoll.name = req.body.name
+
+    /* set the poll 'options' to an array of objects,
+       every object has a 'choice' and 'votes' value */
+    // init array to hold any number of options
+    let tempArray = req.body.option
+    // create an object from the temp array and add it to 'options'
+    for (let i = 0; i < tempArray.length; i++) {
+      let pollOptions = {choice: tempArray[i], votes: 0}
+      thePoll.options[i] = pollOptions
+    }
+
+    Poll.updatePoll(thePoll, (err, updatedPoll) => {
+      res.redirect('/u')
+    })
+  })
 })
 
 // generates a random number, used as a poll ID

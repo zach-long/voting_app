@@ -57,9 +57,13 @@ module.exports.registerVote = function(thePoll, voteValue, cb) {
 }
 
 // Poll method to update a poll entry
+module.exports.updatePollOptions = function(thePoll, cb) {
+  Poll.update({ _id: thePoll._id }, { $set: { options: thePoll.options }}, cb)
+}
+
+// Poll method to edit
 module.exports.updatePoll = function(thePoll, cb) {
-  //thePoll.save(cb)
-  Poll.update({ _id: thePoll._id }, { $set: { options: thePoll.options }}, cb);
+  Poll.update({ _id: thePoll._id }, thePoll, cb)
 }
 
 // Poll method to find all polls for a User
