@@ -8,7 +8,7 @@
   right: 0;
   padding: 1%;
   @include xBrowserFlexColInside;
-  display: none;
+  opacity: 0;
 
   .modal-header {
     @include xBrowserFlexRowOutside;
@@ -34,7 +34,7 @@
   right: 0;
   padding: 1%;
   @include xBrowserFlexColInside;
-  display: none;
+  opacity: 0;
 
   .modal-header {
     @include xBrowserFlexRowOutside;

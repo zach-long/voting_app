@@ -26,7 +26,9 @@
   if (document.getElementsByClassName('dismiss') !== null) {
     closeModal = document.getElementsByClassName('dismiss');
     Array.prototype.filter.call(closeModal, function(dismissButton) {
-      dismissButton.addEventListener('click', closeModalForm);
+      dismissButton.addEventListener('click', function() {
+        closeModalForm(this);
+      });
     });
   };
 
@@ -72,24 +74,28 @@
         may or may not be open during the request */
   function displayModalForm(windowToOpen, alternateWindow) {
     // if another modal window is open, close it
-    if (alternateWindow.classList.contains('visible')) {
-      alternateWindow.classList.remove('visible');
+    if (alternateWindow.classList.contains('fadeIn')) {
+      alternateWindow.classList.remove('fadeIn');
+      alternateWindow.classList.add('fadeOut');
     };
     // if this window is already open, close it
-    if (windowToOpen.classList.contains('visible')) {
-      windowToOpen.classList.remove('visible');
+    if (windowToOpen.classList.contains('fadeIn')) {
+      windowToOpen.classList.remove('fadeIn');
+      windowToOpen.classList.add('fadeOut');
       return;
     };
     // open
-    windowToOpen.classList.add('visible');
+    windowToOpen.classList.remove('fadeOut');
+    windowToOpen.classList.add('fadeIn');
   };
 
   /* closes open form, login or register, respective to
      the button from which form was clicked
      - called from 'closeModal' event listener */
-  function closeModalForm() {
-    let modalForm = this.parentNode.parentNode;
-    modalForm.classList.remove('visible');
+  function closeModalForm(clicked) {
+    let modalForm = clicked.parentNode.parentNode;
+    modalForm.classList.remove('fadeIn');
+    modalForm.classList.add('fadeOut');
   };
 
   // unchecks a checkbox if one is already checked
