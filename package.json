@@ -20,6 +20,7 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
+    "chart.js": "^2.4.0",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "ejs": "*",
