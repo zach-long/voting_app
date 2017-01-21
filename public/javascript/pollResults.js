@@ -41,12 +41,12 @@ function createChart(pollName, labelArray, dataArray) {
   let arrayOfBackgroundColors = [];
   let arrayOfBorderColors = [];
   for (let i = 0; i < labelArray.length; i++) {
-    let bgCol = generateTransparentColorRGB(0.8);
+    let bgCol = generateTransparentColorRGB(0.6);
     let borderCol = generateSolidColorRGB();
     arrayOfBackgroundColors.push(bgCol);
     arrayOfBorderColors.push(borderCol);
   };
-  
+
   let pollResults = new Chart(context, {
 
     type: 'horizontalBar',
@@ -57,7 +57,7 @@ function createChart(pollName, labelArray, dataArray) {
         label: pollName,
         backgroundColor: arrayOfBackgroundColors,
         borderColor: arrayOfBorderColors,
-        borderWidth: 1,
+        borderWidth: 2,
         data: dataArray
       }]
     },
@@ -65,6 +65,14 @@ function createChart(pollName, labelArray, dataArray) {
     options: {
       legend: {
         display: false
+      },
+      scales: {
+        xAxes: [{
+          stacked: true
+        }],
+        yAxes: [{
+          stacked: true
+        }]
       }
     }
 
@@ -83,14 +91,14 @@ function getDataFromArray(stringAttributeToParse, pollObject) {
 
 // returns a random color with transparency
 function generateTransparentColorRGB(opacity) {
-  let rgba = 'rgb(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ', ' + opacity + ')';
+  let rgba = 'rgba(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ', ' + opacity + ')';
   return rgba;
 };
 
 // return sa random color that is solid
 function generateSolidColorRGB() {
-  let rgb = 'rgb(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ')';
-  return rgb;
+  let rgba = 'rgba(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ', ' + '1' + ')';
+  return rgba;
 };
 
 // returns a random 0-255 number
