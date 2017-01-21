@@ -185,6 +185,15 @@ router.get('/results/:pollID', (req, res) => {
   }
 })
 
+// return JSON for XMLHttpRequest used to display results
+router.get('/results/json/:pollID', (req, res) => {
+  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+    if (err) throw err
+
+    res.json(thePoll)
+  })
+})
+
 // authenticated user can destroy own polls
 router.post('/delete/:pollID', (req, res) => {
   if (req.user) {
