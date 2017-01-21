@@ -17,19 +17,8 @@ router.get('/', (req, res) => {
     })
 
   } else {
-    Poll.findPollsByCreator(req.user._id, (err, polls) => {
-      res.redirect('/u')
-    })
+    res.redirect('/u')
   }
-})
-
-router.get('/test', (req, res) => {
-  Poll.getPolls((err, poll) => {
-    console.log("Poll name: " + poll[4].name)
-    console.log("Poll: " + poll[4].options)
-    console.log(poll[4].options.split(','))
-    res.redirect('/')
-  })
 })
 
 module.exports = router

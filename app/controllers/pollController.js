@@ -6,22 +6,22 @@ const mongoose = require('mongoose')
 // import models
 const Poll = require('../models/polls.js')
 
-// method for me during development to clean up
-// remove this before prod
-router.get('/drop', (req, res) => {
-  mongoose.connection.db.dropDatabase()
-  res.redirect('/')
-})
-
 // can only be accessed by an authenticated user
 /* generates a random Key to function as the poll ID,
    and shifts responsibility to a '/poll/:pollID' GET request */
 router.get('/', (req, res) => {
   if (req.user) {
+    /*         Not node-esque
+       - duplicate prevention is in '/:pollID' GET request
+       in the astronomical event a random duplicate is generated
+
     var pollID
     do {
       pollID = generateRandomNumber()
     } while (pollIDExists(pollID))
+
+    */
+    var pollID = generateRandomNumber()
     res.redirect('/poll/' + pollID)
 
   } else {
@@ -33,72 +33,97 @@ router.get('/', (req, res) => {
 /*
    */
 router.get('/:pollID', (req, res) => {
-  if (req.user) {
-    let pollid = req.params.pollID
-    res.locals.pollid = pollid
-    res.render('polls')
+  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+    if (err) throw err
+    console.log(thePoll + " - should be null")
+    if (thePoll === null) {
+      console.log("Poll doesn't exist")
+      if (req.user) {
+        console.log("Poll doesn't exist and User is logged in")
+        let pollid = req.params.pollID
+        res.locals.pollid = pollid
+        console.log("Creating a poll")
+        res.render('polls')
 
-  } else {
-    res.redirect('/')
-  }
+      } else {
+        console.log("Poll doesn't exist but no User")
+        res.redirect('/')
+      }
+
+    } else {
+      console.log("Poll exists, redirecting hacker")
+      res.redirect('/')
+    }
+  })
 })
 
 // saves poll to the DB
 router.post('/:pollID', (req, res) => {
-  if (req.user) {
-    // validate poll integrity
-    req.checkBody('name', 'You must enter a name').notEmpty()
+  Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
+    if (err) throw err
 
-    // set poll privacy level
-    let privacyLevel;
-    if (req.body.private === 'on') {
-      privacyLevel = 'private'
-    } else if (req.body.public === 'on') {
-      privacyLevel = 'public'
-    } else {
-      alert('An unknown error has occured')
-      return;
-    }
+    if (thePoll === null) {
+      if (req.user) {
+        // validate poll integrity
+        req.checkBody('name', 'You must enter a name').notEmpty()
 
-    // handles logic based on validation
-    if (!req.validationErrors()) {
-      // instantiate a Poll, save to DB
-      var newPoll = new Poll({
-        creator: req.user._id,
-        pollid: req.params.pollID,
-        privacy: privacyLevel,
-        name: req.body.name
-      })
-      /* set the poll 'options' to an array of objects,
-         every object has a 'choice' and 'votes' value */
-      // init array to hold any number of options
-      let tempArray = req.body.option
-      // create an object from the temp array and add it to 'options'
-      for (let i = 0; i < tempArray.length; i++) {
-        let pollOptions = {choice: tempArray[i], votes: 0}
-        newPoll.options[i] = pollOptions
+        // set poll privacy level
+        let privacyLevel;
+        if (req.body.private === 'on') {
+          privacyLevel = 'private'
+        } else if (req.body.public === 'on') {
+          privacyLevel = 'public'
+        } else {
+          alert('An unknown error has occured')
+          return;
+        }
+
+        // handles logic based on validation
+        if (!req.validationErrors()) {
+          // instantiate a Poll, save to DB
+          var newPoll = new Poll({
+            creator: req.user._id,
+            pollid: req.params.pollID,
+            privacy: privacyLevel,
+            name: req.body.name
+          })
+          /* set the poll 'options' to an array of objects,
+             every object has a 'choice' and 'votes' value */
+          // init array to hold any number of options
+          let tempArray = req.body.option
+          // create an object from the temp array and add it to 'options'
+          for (let i = 0; i < tempArray.length; i++) {
+            let pollOptions = {choice: tempArray[i], votes: 0}
+            newPoll.options[i] = pollOptions
+          }
+
+          // create a Poll with function from the Model file
+          Poll.createPoll(newPoll, (err, poll) => {
+            if (err) throw err
+
+            Poll.setOwner(req.user, poll, (err, owner) => {
+              if (err) throw err
+
+            })
+          })
+
+          // display a success message and go to root
+          res.redirect('/')
+
+        } else {
+          // render homepage
+          res.render('profile')
+        }
+
+      } else {
+        res.redirect('/')
       }
 
-      // create a Poll with function from the Model file
-      Poll.createPoll(newPoll, (err, poll) => {
-        if (err) throw err
-
-        Poll.setOwner(req.user, poll, (err, owner) => {
-          if (err) throw err
-
-        })
-      })
-
-      // display a success message and go to root
-      res.redirect('/')
     } else {
-      // render homepage with error message
-      res.render('profile')
+      console.log("Poll exists, redirecting hacker")
+      res.redirect('/')
     }
-
-  } else {
-    res.redirect('/')
-  }
+  })
 })
 
 // handle request for unauthenticated user to vote in a poll
@@ -106,7 +131,6 @@ router.get('/vote/:pollID', (req, res) => {
   if (!req.cookies[req.params.pollID]) {
     Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
       if (err) throw err
-      //res.locals.poll = thePoll
       res.render('vote', {poll: thePoll, req: req})
     })
 
@@ -253,7 +277,7 @@ router.post('/edit/:pollID', (req, res) => {
     }
 
     Poll.updatePoll(thePoll, (err, updatedPoll) => {
-      
+
       res.redirect('/u')
     })
   })
@@ -265,12 +289,24 @@ function generateRandomNumber() {
   return randomNumber
 }
 
-// queries the DB to see if a poll with the generated ID exists
+/*
 function pollIDExists(num) {
-  // check db for existing poll ID
-    // if exists then return true
-  // else
-    // return false
-}
 
+}
+*/
+/*
+function exists(num, cb) {
+  Poll.getPollByPolID(num, (err, thePoll) => {
+    if (err) {
+      cb(err, null)
+    } else if (thePoll) {
+      console.log("poll already exists")
+      cb(null, true)
+    } else {
+      console.log("Poll doesn't exist")
+      cb(null, false)
+    }
+  })
+}
+*/
 module.exports = router
