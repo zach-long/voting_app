@@ -217,9 +217,8 @@ footer {
   footer p {
     color: #F2F2F2; }
 
-#poll-result-visual {
-  width: 90%;
-  margin: auto; }
+.poll-display-wrap {
+  padding: 1em; }
 
 #login-form {
   position: absolute;
