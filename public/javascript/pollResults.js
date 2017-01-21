@@ -8,6 +8,8 @@ var pollData;
 var pollUrl;
 var pollOptionNames;
 var pollOptionVotes;
+var backgroundColorGradientObject;
+var borderColorGradientObject;
 
 // create url for http request
 let pageUrl = window.location.href;
@@ -23,49 +25,46 @@ get(pollUrl).then(function(response) {
   pollData = JSON.parse(response);
   let pollChoices = getDataFromArray('choice', pollData);
   let pollChoiceVotes = getDataFromArray('votes', pollData);
-  createChart(pollChoices, pollChoiceVotes);
-  
+  createChart(pollData.name, pollChoices, pollChoiceVotes);
+
 }, function(error) {
   pollData = error;
 });
 
 // function to create a chart
-function createChart(labelArray, dataArray) {
+function createChart(pollName, labelArray, dataArray) {
   // define context and create chart
-  let context = document.getElementById('poll-result-visual').getContext('2d');
+  let c = document.getElementById('poll-result-visual');
+  let context = c.getContext('2d');
+
+  // generate array with a color for each poll option
+  let arrayOfBackgroundColors = [];
+  let arrayOfBorderColors = [];
+  for (let i = 0; i < labelArray.length; i++) {
+    let bgCol = generateTransparentColorRGB(0.8);
+    let borderCol = generateSolidColorRGB();
+    arrayOfBackgroundColors.push(bgCol);
+    arrayOfBorderColors.push(borderCol);
+  };
+  
   let pollResults = new Chart(context, {
 
     type: 'horizontalBar',
 
     data: {
       labels: labelArray,
-      datasets: [
-        {
-          label: 'test dataset',
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
-          borderWidth: 1,
-          data: dataArray
-        }
-      ]
+      datasets: [{
+        label: pollName,
+        backgroundColor: arrayOfBackgroundColors,
+        borderColor: arrayOfBorderColors,
+        borderWidth: 1,
+        data: dataArray
+      }]
     },
 
     options: {
-      scales: {
-        xAxes: [{
-            stacked: true
-        }],
-        yAxes: [{
-            stacked: true
-        }]
+      legend: {
+        display: false
       }
     }
 
@@ -81,3 +80,21 @@ function getDataFromArray(stringAttributeToParse, pollObject) {
   });
   return optionArray;
 };
+
+// returns a random color with transparency
+function generateTransparentColorRGB(opacity) {
+  let rgba = 'rgb(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ', ' + opacity + ')';
+  return rgba;
+};
+
+// return sa random color that is solid
+function generateSolidColorRGB() {
+  let rgb = 'rgb(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ')';
+  return rgb;
+};
+
+// returns a random 0-255 number
+function generateColorValue() {
+  let num = Math.floor(Math.random() * 255);
+  return num;
+}
