@@ -35,23 +35,17 @@ router.get('/', (req, res) => {
 router.get('/:pollID', (req, res) => {
   Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
     if (err) throw err
-    console.log(thePoll + " - should be null")
     if (thePoll === null) {
-      console.log("Poll doesn't exist")
       if (req.user) {
-        console.log("Poll doesn't exist and User is logged in")
         let pollid = req.params.pollID
         res.locals.pollid = pollid
-        console.log("Creating a poll")
         res.render('polls')
 
       } else {
-        console.log("Poll doesn't exist but no User")
         res.redirect('/')
       }
 
     } else {
-      console.log("Poll exists, redirecting hacker")
       res.redirect('/')
     }
   })
@@ -120,7 +114,6 @@ router.post('/:pollID', (req, res) => {
       }
 
     } else {
-      console.log("Poll exists, redirecting hacker")
       res.redirect('/')
     }
   })
