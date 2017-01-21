@@ -5,9 +5,13 @@
   <div class="main-content">
     <h3 class="content-header"><%= poll.name %></h3>
     <div class="internal">
+
       <% poll.options.forEach(function(option) { %>
         <%- include('components/voting_result', {choice: option.choice, votes: option.votes}) %>
       <% }) %>
+
+      <canvas id="poll-result-visual"></canvas>
+
       <p class="caption">You voted "<b><%= vote %></b>"</p>
     </div>
   </div>
@@ -15,5 +19,5 @@
   <% if ((user) && (String(poll.creator) === String(user._id))) { %>
     <%- include('partials/ownerPartial', { poll: poll, req: req }); %>
   <% }; %>
-
+<script src="/javascript/modules/Chart.min.js"></script>
 <% include components/footer.ejs %>

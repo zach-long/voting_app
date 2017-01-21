@@ -217,6 +217,10 @@ footer {
   footer p {
     color: #F2F2F2; }
 
+#poll-result-visual {
+  width: 90%;
+  margin: auto; }
+
 #login-form {
   position: absolute;
   background-color: #f2f2f2;
