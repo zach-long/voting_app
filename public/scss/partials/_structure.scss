@@ -56,10 +56,16 @@ header {
 }
 
 main {
-  width: 50%;
   text-align: center;
   flex: 1 1 auto;
+  @include setWidth(90%);
   @include xBrowserFlexColInside;
+  @include tablet {
+    @include setWidth(70%);
+  }
+  @include desktop {
+    @include setWidth(50%);
+  }
 
   h1 {
     padding-top: 5%;

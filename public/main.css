@@ -153,9 +153,11 @@ header {
           color: #F2F2F2; }
 
 main {
-  width: 50%;
   text-align: center;
   flex: 1 1 auto;
+  min-width: 90%;
+  width: 90%;
+  max-width: 90%;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
@@ -168,6 +170,16 @@ main {
   align-content: center;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap; }
+  @media (min-width: 768px) {
+    main {
+      min-width: 70%;
+      width: 70%;
+      max-width: 70%; } }
+  @media (min-width: 1440px) {
+    main {
+      min-width: 50%;
+      width: 50%;
+      max-width: 50%; } }
   main h1 {
     padding-top: 5%;
     padding-bottom: 5%; }
