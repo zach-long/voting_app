@@ -22,6 +22,10 @@ pollUrl = tempArray.join('/');
 // 'get()' defined in 'httpRequest.js'
 //   - makes an http request as a promise
 get(pollUrl).then(function(response) {
+  // hide "loading"
+  let loading = document.getElementById('loading');
+  loading.classList.add('not-visible');
+  // build chart
   pollData = JSON.parse(response);
   let pollChoices = getDataFromArray('choice', pollData);
   let pollChoiceVotes = getDataFromArray('votes', pollData);

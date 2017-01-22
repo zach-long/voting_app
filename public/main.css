@@ -22,6 +22,9 @@ main a {
 .visible {
   display: flex !important; }
 
+.not-visible {
+  display: none; }
+
 .animate-fast {
   -webkit-animation-duration: 0.1s;
   -moz-animation-duration: 0.1s;

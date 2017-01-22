@@ -2,6 +2,10 @@
   display: flex !important;
 }
 
+.not-visible {
+  display: none;
+}
+
 // animation speed standards
 // used by @mixin 'animated'
 $animFast: .1s;

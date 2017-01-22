@@ -9,7 +9,7 @@ function get(url) {
 
     // promise is fulfilled with either the data or an error
     request.onload = function() {
-      if (request.status == 200) {
+      if (request.status == 200 && request.readyState == 4) {
         resolve(request.response);
       } else {
         reject(Error(request.statusText));
