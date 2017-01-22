@@ -2,63 +2,6 @@
   padding: 1em;
 }
 
-#login-form {
-  position: absolute;
-  background-color: #f2f2f2;
-  border: 2px solid #ccc;
-  border-radius: 2px;
-  margin-top: 7em;
-  margin-right: 1em;
-  right: 0;
-  padding: 1%;
-  @include xBrowserFlexColInside;
-  opacity: 0;
-
-  .modal-header {
-    @include xBrowserFlexRowOutside;
-  }
-
-  form {
-    @include xBrowserFlexColInside;
-
-    div {
-      padding-bottom: .125em;
-      @include xBrowserFlexRowOutside;
-    }
-  }
-}
-
-#registration-form {
-  position: absolute;
-  background-color: #f2f2f2;
-  border: 2px solid #ccc;
-  border-radius: 2px;
-  margin-top: 9em;
-  margin-right: 1em;
-  right: 0;
-  padding: 1%;
-  @include xBrowserFlexColInside;
-  opacity: 0;
-
-  .modal-header {
-    @include xBrowserFlexRowOutside;
-  }
-
-  form {
-    margin-top: .5em;
-    @include xBrowserFlexColInside;
-
-    div {
-      padding-bottom: .125em;
-      @include xBrowserFlexRowOutside;
-
-      .form-button {
-        margin: 1em auto 0 auto;
-      }
-    }
-  }
-}
-
 .login {
   cursor: pointer;
 }

@@ -65,10 +65,12 @@ $animSlow: 1s;
     0% {
       opacity: 0;
       z-index: 0;
+      @include xTransform(translateX(-9999px));
     }
     100% {
       opacity: 1;
       z-index: 2;
+      @include xTransform(translateX(0px));
     }
   }
 }
@@ -79,10 +81,12 @@ $animSlow: 1s;
     0% {
       opacity: 1;
       z-index: 2;
+      @include xTransform(translateX(0px));
     }
     100% {
       opacity: 0;
       z-index: 0;
+      @include xTransform(translateX(-9999px));
     }
   }
 }

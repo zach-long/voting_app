@@ -79,3 +79,70 @@ footer {
     color: $lightText;
   }
 }
+
+#modal {
+  background-color: #333;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-9999px);
+  @include fullWidth;
+  @include fullHeight;
+  @include centeredVertically;
+  -webkit-align-items: center;
+  align-items: center;
+
+  #authenticate {
+    @include xBrowserFlexRowOutside;
+
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    #login-form {
+      background-color: #f2f2f2;
+      border: 2px solid #ccc;
+      padding: 1%;
+      @include xBrowserFlexColInside;
+
+      .modal-header {
+        @include xBrowserFlexRowOutside;
+      }
+
+      form {
+        @include xBrowserFlexColInside;
+
+        div {
+          padding-bottom: .125em;
+          @include xBrowserFlexRowOutside;
+        }
+      }
+    }
+
+    #registration-form {
+      background-color: #f2f2f2;
+      border: 2px solid #ccc;
+      border-radius: 2px;
+      padding: 1%;
+      @include xBrowserFlexColInside;
+
+      .modal-header {
+        @include xBrowserFlexRowOutside;
+      }
+
+      form {
+        margin-top: .5em;
+        @include xBrowserFlexColInside;
+
+        div {
+          padding-bottom: .125em;
+          @include xBrowserFlexRowOutside;
+
+          .form-button {
+            margin: 1em auto 0 auto;
+          }
+        }
+      }
+    }
+  }
+}
