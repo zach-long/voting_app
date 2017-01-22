@@ -36,7 +36,7 @@
   if (modalBackground !== 'undefined') {
     modalBackground = document.getElementById('modal');
     authenticationForm = document.getElementById('authenticate');
-    modalBackground.addEventListener('click', closeModalForm);
+    modalBackground.addEventListener('click', closeModalForm, false);
   };
 
   // set event listener to display login form
@@ -74,7 +74,8 @@
   /* closes open form, login or register, respective to
      the button from which form was clicked
      - called from 'closeModal' event listener */
-  function closeModalForm() {
+  function closeModalForm(event) {
+    if (modalBackground !== event.target) { return; };
     modalBackground.classList.remove('fadeIn');
     modalBackground.classList.add('fadeOut');
   };
