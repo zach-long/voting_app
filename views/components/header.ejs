@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voting App</title>
+  <script src="https://use.fontawesome.com/069ba3895a.js"></script>
   <link href="/main.css" rel="stylesheet" type="text/css">
   <link href="resources/favicon.png" rel="icon" size="16x16" type="image/jpeg">
   <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
@@ -13,9 +14,9 @@
   <header>
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
         <% if (!user) { %>
-        <li><a class="login">Log in to create a poll</a></li>
+        <li><a class="login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in to create a poll</a></li>
         <% } else { %>
         <li><a href="/poll">Create a poll</a></li>
         <% } %>
@@ -23,6 +24,7 @@
     </nav>
     <div>
       <% if (!user) { %>
+      <div class="menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
       <ul>
         <li><button id="register" class="auth-button button-text">Register</button></li>
         <li><button class="login auth-button button-text">Log in</button></li>

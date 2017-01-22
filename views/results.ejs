@@ -1,10 +1,15 @@
 <% include components/header.ejs %>
 
-  <a href="/u" class="back-button">Go back</a>
+  <a href="/u" class="back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
 
   <div class="main-content">
     <h3 class="content-header"><%= poll.name %></h3>
     <div class="internal">
+      <!--
+      <div class="loading">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+      </div>
+      -->
       <div class="poll-display-wrap">
         <canvas id="poll-result-visual"></canvas>
       </div>
