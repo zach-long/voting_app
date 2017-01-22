@@ -1,11 +1,14 @@
 # voting_app
 A full-stack web app to facilitate voting.
 
-##To do shortlist:
-###Greater Priority
-- Add private/public option when creating polls so polls can be optionally viewed only with a link and are not displayed for all to see
-- Poll creator can see poll result metadata
+Deployed to heroku at https://nodevote.herokuapp.com.
 
-###Lesser Priority
-- Optimize View information displayed
-- Add styles
+##To do shortlist:
+- Add a few media queries
+- Fix '.main-content' display in certain browsers
+- Consolidate functions 'generateRandomTransparentColor()' and 'generateRandomSolidColor()' into one that accepts an opacity argument
+- Add courtesy messages where necessary
+- Add 'favicon.ico'
+- Add icons for UX
+- Add GitHub link
+- Refine poll chart display
