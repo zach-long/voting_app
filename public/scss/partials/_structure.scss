@@ -10,46 +10,21 @@ header {
   background: $darkColor;
   height: 3em;
   @include fullWidth;
-  @include xBrowserFlexRowOutside;
+  @include centeredVertically;
 
   a {
     //text-decoration: underline;
   }
 
   nav {
-    @include centeredVertically;
+    padding: 0 1em 0 1em;
+    @include xBrowserFlexRowOutside;
 
-    ul {
-      list-style-type: none;
-      padding: 0 0 0 2em;
-      margin: 0;
+    div {
+      @include xBrowserFlexRowCenter;
 
-      li {
-        display: inline-block;
-        padding-right: 1em;
-
-        a {
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  div {
-    @include centeredVertically;
-
-    ul {
-      list-style-type: none;
-      padding: 0 2em 0 0;
-      margin: 0;
-
-      li {
-        display: inline-block;
-        padding-left: 1em;
-
-        p {
-          color: $lightText;
-        }
+      a {
+        margin-right: 1em;
       }
     }
   }

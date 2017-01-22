@@ -112,48 +112,39 @@ header {
   max-width: 100vw;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  -webkit-align-items: stretch;
-  align-items: stretch;
-  -webkit-align-content: center;
-  align-content: center;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap; }
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center; }
   header nav {
+    padding: 0 1em 0 1em;
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: center;
-    justify-content: center; }
-    header nav ul {
-      list-style-type: none;
-      padding: 0 0 0 2em;
-      margin: 0; }
-      header nav ul li {
-        display: inline-block;
-        padding-right: 1em; }
-        header nav ul li a {
-          cursor: pointer; }
-  header div {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: center;
-    justify-content: center; }
-    header div ul {
-      list-style-type: none;
-      padding: 0 2em 0 0;
-      margin: 0; }
-      header div ul li {
-        display: inline-block;
-        padding-left: 1em; }
-        header div ul li p {
-          color: #F2F2F2; }
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap; }
+    header nav div {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-align-content: center;
+      align-content: center;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap; }
+      header nav div a {
+        margin-right: 1em; }
 
 main {
   text-align: center;
@@ -366,6 +357,9 @@ footer {
       #registration-form form div .form-button {
         margin: 1em auto 0 auto; }
 
+.login {
+  cursor: pointer; }
+
 .back-button {
   position: absolute;
   margin-top: .5em; }
@@ -560,5 +554,22 @@ footer {
   display: inline-block; }
 .checkbox-field p {
   display: inline-block; }
+
+.standout {
+  background: #B8D1E0;
+  font-weight: bold; }
+  .standout a {
+    text-decoration: underline;
+    color: #274759;
+    transition: color 150ms; }
+    .standout a:hover {
+      color: #333333; }
+
+.mobile-sensitive {
+  display: none;
+  margin-left: .5em; }
+  @media (min-width: 768px) {
+    .mobile-sensitive {
+      display: initial; } }
 
 /*# sourceMappingURL=main.css.map */

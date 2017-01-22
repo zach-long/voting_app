@@ -13,35 +13,20 @@
 <body>
   <header>
     <nav>
-      <ul>
-        <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+      <div>
+        <a href="/"><div><i class="fa fa-home" aria-hidden="true"></i><span class="mobile-sensitive">Home</span></div></a>
         <% if (!user) { %>
-        <li><a class="login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in to create a poll</a></li>
+          <a class="login"><div><i class="fa fa-sign-in" aria-hidden="true"></i><span class="mobile-sensitive">Log in, or create an account.</span></div></a>
         <% } else { %>
-        <li><a href="/poll">Create a poll</a></li>
-        <% } %>
-      </ul>
+          <a href="/u/logout" class="logout"><div><i class="fa fa-sign-out" aria-hidden="true"></i><span class="mobile-sensitive">Log out</span></div></a>
+        <% }; %>
+      </div>
+      <div>
+        <% if (user) { %>
+          <p>Welcome, <%= user.name %>.</p>
+        <% }; %>
+      </div>
     </nav>
-    <div>
-      <% if (!user) { %>
-      <div class="menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
-      <ul>
-        <li><button id="register" class="auth-button button-text">Register</button></li>
-        <li><button class="login auth-button button-text">Log in</button></li>
-      </ul>
-      <div id="registration-form" class="animate-fast">
-        <%- include('partials/register.ejs') %>
-      </div>
-      <div id="login-form" class="animate-fast">
-        <%- include('partials/login.ejs') %>
-      </div>
-      <% } else { %>
-      <ul>
-        <li><p>Welcome, <%= user.name %>.</p></li>
-        <li><a href="/u/logout" class="logout">Log out</a></li>
-      </ul>
-      <% } %>
-    </div>
   </header>
   <main>
 

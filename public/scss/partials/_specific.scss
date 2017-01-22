@@ -59,6 +59,10 @@
   }
 }
 
+.login {
+  cursor: pointer;
+}
+
 .back-button {
   position: absolute;
   margin-top: .5em;
@@ -268,5 +272,28 @@
 
   p {
     display: inline-block;
+  }
+}
+
+.standout {
+  background: $lightBlue;
+  font-weight: bold;
+
+  a {
+    text-decoration: underline;
+    color: $darkerColor;
+    transition: color 150ms;
+    &:hover {
+      color: $darkText;
+    }
+  }
+}
+
+.mobile-sensitive {
+  display: none;
+  margin-left: .5em;
+
+  @include tablet {
+    display: initial;
   }
 }
