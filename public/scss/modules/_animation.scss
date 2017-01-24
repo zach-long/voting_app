@@ -94,47 +94,31 @@ $animSlow: 1s;
 .fadeInText {
   @include animationName(fadeInText);
   @include keyframe(fadeInText) {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 }
 
 .fadeOutText {
   @include animationName(fadeOutText);
   @include keyframe(fadeOutText) {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+    0% { opacity: 1; }
+    100% { opacity: 0; }
   }
 }
 
 .slideIn {
   @include animationName(slideIn);
   @include keyframe(slideIn) {
-    0% {
-      @include xTransform(translateX(500px));
-    }
-    100% {
-      @include xTransform(translateX(0px));
-    }
+    0% { @include xTransform(translateX(500px)); }
+    100% { @include xTransform(translateX(0px)); }
   }
 }
 
 .slideOut {
   @include animationName(slideOut);
   @include keyframe(slideOut) {
-    0% {
-      @include xTransform(translateX(0px));
-    }
-    100% {
-      @include xTransform(translateX(500px));
-    }
+    0% { @include xTransform(translateX(0px)); }
+    100% { @include xTransform(translateX(500px)); }
   }
 }

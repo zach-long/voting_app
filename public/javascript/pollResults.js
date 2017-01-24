@@ -12,9 +12,9 @@ var backgroundColorGradientObject;
 var borderColorGradientObject;
 
 // create url for http request
-let pageUrl = window.location.href;
-let tempArray = pageUrl.split('/');
-let pollID = tempArray.pop();
+var pageUrl = window.location.href;
+var tempArray = pageUrl.split('/');
+var pollID = tempArray.pop();
 tempArray.push('json', pollID);
 pollUrl = tempArray.join('/');
 
@@ -23,12 +23,12 @@ pollUrl = tempArray.join('/');
 //   - makes an http request as a promise
 get(pollUrl).then(function(response) {
   // hide "loading"
-  let loading = document.getElementById('loading');
+  var loading = document.getElementById('loading');
   loading.classList.add('not-visible');
   // build chart
   pollData = JSON.parse(response);
-  let pollChoices = getDataFromArray('choice', pollData);
-  let pollChoiceVotes = getDataFromArray('votes', pollData);
+  var pollChoices = getDataFromArray('choice', pollData);
+  var pollChoiceVotes = getDataFromArray('votes', pollData);
   createChart(pollData.name, pollChoices, pollChoiceVotes);
 
 }, function(error) {
@@ -38,20 +38,20 @@ get(pollUrl).then(function(response) {
 // function to create a chart
 function createChart(pollName, labelArray, dataArray) {
   // define context and create chart
-  let c = document.getElementById('poll-result-visual');
-  let context = c.getContext('2d');
+  var c = document.getElementById('poll-result-visual');
+  var context = c.getContext('2d');
 
   // generate array with a color for each poll option
-  let arrayOfBackgroundColors = [];
-  let arrayOfBorderColors = [];
-  for (let i = 0; i < labelArray.length; i++) {
-    let bgCol = generateColorRGBA(0.6);
-    let borderCol = generateColorRGBA(1);
+  var arrayOfBackgroundColors = [];
+  var arrayOfBorderColors = [];
+  for (var i = 0; i < labelArray.length; i++) {
+    var bgCol = generateColorRGBA(0.6);
+    var borderCol = generateColorRGBA(1);
     arrayOfBackgroundColors.push(bgCol);
     arrayOfBorderColors.push(borderCol);
   };
 
-  let pollResults = new Chart(context, {
+  var pollResults = new Chart(context, {
 
     type: 'horizontalBar',
 
@@ -86,7 +86,7 @@ function createChart(pollName, labelArray, dataArray) {
 // consolidates data from an array inside an object
 // returns a smaller array
 function getDataFromArray(stringAttributeToParse, pollObject) {
-  let optionArray = [];
+  var optionArray = [];
   pollObject.options.forEach(function(option) {
     optionArray.push(option[stringAttributeToParse]);
   });
@@ -95,12 +95,12 @@ function getDataFromArray(stringAttributeToParse, pollObject) {
 
 // returns a random color with transparency
 function generateColorRGBA(opacity) {
-  let rgba = 'rgba(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ', ' + opacity + ')';
+  var rgba = 'rgba(' + generateColorValue() + ', ' + generateColorValue() + ', ' + generateColorValue() + ', ' + opacity + ')';
   return rgba;
 };
 
 // returns a random 0-255 number
 function generateColorValue() {
-  let num = Math.floor(Math.random() * 255);
+  var num = Math.floor(Math.random() * 255);
   return num;
 }

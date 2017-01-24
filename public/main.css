@@ -225,6 +225,8 @@ header {
       flex-wrap: nowrap; }
       header nav div a {
         margin-right: 1em; }
+      header nav div p {
+        color: #F2F2F2; }
 
 main {
   text-align: center;
@@ -261,6 +263,7 @@ main {
     padding-bottom: 5%; }
   main .main-content {
     max-height: 80%;
+    overflow-x: hidden;
     overflow-y: scroll;
     background-color: #F2F2F2;
     margin-bottom: 1em;

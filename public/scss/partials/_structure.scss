@@ -26,6 +26,10 @@ header {
       a {
         margin-right: 1em;
       }
+
+      p {
+        color: $lightText;
+      }
     }
   }
 }
@@ -53,6 +57,7 @@ main {
 
   .main-content {
     max-height: 80%;
+    overflow-x: hidden;
     overflow-y: scroll;
     background-color: $lightColor;
     margin-bottom: 1em;
