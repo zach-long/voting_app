@@ -58,6 +58,21 @@
   flex-wrap: nowrap;
 }
 
+@mixin xBrowserFlexCenter {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
 @mixin fullWidth {
   min-width: 100vw;
   width: 100vw;

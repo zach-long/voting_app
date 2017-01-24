@@ -87,49 +87,22 @@ footer {
 }
 
 #modal {
-  background-color: #333;
-  opacity: 0;
+  background-color: rgba(15, 15, 15, .8);
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateX(-9999px);
+  transform: translateX(-3000px);
   @include fullWidth;
   @include fullHeight;
   @include centeredVertically;
-  -webkit-align-items: center;
-  align-items: center;
 
   #authenticate {
-    @include xBrowserFlexRowOutside;
+    @include xBrowserFlexCenter;
 
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-
-    #login-form {
+    .auth-form {
       background-color: #f2f2f2;
       border: 2px solid #ccc;
-      padding: 1%;
-      z-index: 5;
-      @include xBrowserFlexColInside;
-
-      .modal-header {
-        @include xBrowserFlexRowOutside;
-      }
-
-      form {
-        @include xBrowserFlexColInside;
-
-        div {
-          padding-bottom: .125em;
-          @include xBrowserFlexRowOutside;
-        }
-      }
-    }
-
-    #registration-form {
-      background-color: #f2f2f2;
-      border: 2px solid #ccc;
-      border-radius: 2px;
+      width: 18em;
       padding: 1%;
       z-index: 5;
       @include xBrowserFlexColInside;

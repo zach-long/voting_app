@@ -65,7 +65,7 @@ $animSlow: 1s;
     0% {
       opacity: 0;
       z-index: 0;
-      @include xTransform(translateX(-9999px));
+      @include xTransform(translateX(-3000px));
     }
     100% {
       opacity: 1;
@@ -86,7 +86,7 @@ $animSlow: 1s;
     100% {
       opacity: 0;
       z-index: 0;
-      @include xTransform(translateX(-9999px));
+      @include xTransform(translateX(-3000px));
     }
   }
 }

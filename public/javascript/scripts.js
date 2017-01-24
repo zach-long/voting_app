@@ -11,6 +11,7 @@
   var checkboxes;
   var modalBackground;
   var authenticationForm;
+  var dismissButton;
   var formMenu;
   // define globals
   var optionsField = document.getElementsByClassName('options')[0];
@@ -37,6 +38,7 @@
   if (modalBackground !== 'undefined') {
     modalBackground = document.getElementById('modal');
     authenticationForm = document.getElementById('authenticate');
+    dismissButton = document.getElementById('dismiss');
     modalBackground.addEventListener('click', closeModalForm, false);
   };
 
@@ -86,9 +88,11 @@
      the button from which form was clicked
      - called from 'closeModal' event listener */
   function closeModalForm(event) {
-    if (modalBackground !== event.target) { return; };
-    modalBackground.classList.remove('fadeIn');
-    modalBackground.classList.add('fadeOut');
+    if (modalBackground == event.target ||
+        dismissButton == event.target) {
+      modalBackground.classList.remove('fadeIn');
+      modalBackground.classList.add('fadeOut');
+    } else { return; };
   };
 
   // unchecks a checkbox if one is already checked
