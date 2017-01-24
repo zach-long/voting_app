@@ -1,8 +1,7 @@
 <% include components/header.ejs %>
 
-  <a href="/u" class="back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
-
   <div class="main-content">
+    <a href="/u" class="back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span class="mobile-sensitive">Go back</span></a>
     <h3 class="content-header"><%= poll.name %></h3>
     <div class="internal">
       <form class="vote-form" method="post" action="/poll/vote/<%= poll.pollid %>">

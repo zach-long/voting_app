@@ -71,7 +71,7 @@
   /* adds another input field to poll creation
      - called from 'addOptionButton' event listener */
   function addInput() {
-    let div = document.createElement('div');
+    var div = document.createElement('div');
     div.innerHTML = '<label>Option </label><input type="text" name="option">';
     optionsField.insertAdjacentElement('beforeend', div);
   };
@@ -100,8 +100,8 @@
 
   // show this user edit and delete buttons for their polls
   function partialToggle(clicked) {
-    let partial = clicked.childNodes[3];
-    let title = clicked.parentNode.children[1];
+    var partial = clicked.childNodes[3];
+    var title = clicked.parentNode.children[1];
     if (!partial.classList.contains('slideIn')) {
       if (partial.classList.contains('slideOut')) {
         partial.classList.remove('slideOut');

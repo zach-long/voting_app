@@ -264,6 +264,7 @@ main {
     overflow-y: scroll;
     background-color: #F2F2F2;
     margin-bottom: 1em;
+    position: relative;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -468,7 +469,8 @@ footer {
 
 .back-button {
   position: absolute;
-  margin-top: .5em; }
+  margin-top: .55em;
+  margin-left: .5em; }
 
 .button-text {
   font-size: 1em; }
@@ -494,7 +496,7 @@ footer {
   margin-right: .5em;
   cursor: pointer;
   width: 5rem;
-  height: 2em;
+  height: 1.5rem;
   border: none;
   border-radius: 2px;
   background-color: #F5DF7B;
@@ -507,7 +509,7 @@ footer {
   margin-right: 1rem;
   cursor: pointer;
   width: 5rem;
-  height: 2em;
+  height: 1.5rem;
   border: none;
   border-radius: 2px;
   background-color: #F09784;
@@ -603,6 +605,7 @@ footer {
   background: #F2F2F2;
   position: absolute;
   display: inline-flex;
+  top: calc(0% + .25rem);
   left: calc(50% - 6.25rem);
   -webkit-transform: translateX(500px);
   transform: translateX(500px); }

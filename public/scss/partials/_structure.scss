@@ -56,6 +56,7 @@ main {
     overflow-y: scroll;
     background-color: $lightColor;
     margin-bottom: 1em;
+    position: relative;
     @include xBrowserFlexColInside;
     @include sideBorders {
       border-color: $darkColor;
