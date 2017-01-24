@@ -5,6 +5,7 @@
     <% if (userPolls.length < 1) { %>
       <p class="message-inner underlined">You have no polls, <a href="/poll">create one now!</a></p>
     <% } else { %>
+      <p class="message-inner underlined standout"><a href="/poll">Create a poll!</a></p>
     <% userPolls.forEach(function(poll) { %>
       <%- include('components/userPolls', { userPoll: poll }); %>
       <% }); %>

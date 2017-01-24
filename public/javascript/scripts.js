@@ -11,6 +11,7 @@
   var checkboxes;
   var modalBackground;
   var authenticationForm;
+  var formMenu;
   // define globals
   var optionsField = document.getElementsByClassName('options')[0];
   var privateButton = document.getElementsByClassName('checkbox')['private']
@@ -57,6 +58,16 @@
     });
   };
 
+  // set event listener for User poll editing
+  if (document.getElementsByClassName('menu') !== null) {
+    formMenu = document.getElementsByClassName('menu');
+    Array.prototype.filter.call(formMenu, function(menuButton) {
+      menuButton.addEventListener('click', function() {
+        partialToggle(this);
+      });
+    });
+  };
+
   /* adds another input field to poll creation
      - called from 'addOptionButton' event listener */
   function addInput() {
@@ -85,6 +96,33 @@
     pri.checked = false;
     pub.checked = false;
     clicked.checked = true;
+  };
+
+  // show this user edit and delete buttons for their polls
+  function partialToggle(clicked) {
+    let partial = clicked.childNodes[3];
+    let title = clicked.parentNode.children[1];
+    if (!partial.classList.contains('slideIn')) {
+      if (partial.classList.contains('slideOut')) {
+        partial.classList.remove('slideOut');
+      };
+      partial.classList.add('slideIn');
+      // remove pre-existing animation
+      title.classList.remove('fadeInText');
+      title.classList.remove('animate-norm');
+      // set for quick fade-out
+      title.classList.add('animate-fast');
+      title.classList.add('fadeOutText');
+    } else {
+      partial.classList.remove('slideIn');
+      partial.classList.add('slideOut');
+      // remove pre-existing animation
+      title.classList.remove('fadeOutText');
+      title.classList.remove('animate-fast');
+      // set for slower fade-in than fade-out
+      title.classList.add('animate-norm');
+      title.classList.add('fadeInText');
+    };
   };
 
 }());

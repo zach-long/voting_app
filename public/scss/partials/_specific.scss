@@ -31,9 +31,10 @@
 
 .edit-button {
   margin: 0;
+  margin-left: 1rem;
   margin-right: .5em;
   cursor: pointer;
-  @include flatButton(7em, 2em, $yellow);
+  @include flatButton(5rem, 2em, $yellow);
   transition: background-color 150ms;
   &:hover {
     background-color: $darkYellow;
@@ -42,9 +43,9 @@
 
 .delete-button {
   margin: 0;
-  margin-right: .5em;
+  margin-right: 1rem;
   cursor: pointer;
-  @include flatButton(7em, 2em, $lightRed);
+  @include flatButton(5rem, 2em, $lightRed);
   transition: background-color 150ms;
   &:hover {
     background-color: $brightRed;
@@ -117,8 +118,8 @@
 
 .userPoll {
   border-bottom: 1px solid #CCCCCC;
-  height: $userPollHeight;
   position: relative;
+  @include xBrowserFlexRowOutside;
 
   a {
     display: inline-block;
@@ -132,9 +133,11 @@
 
 .form-container {
   height: $userPollHeight;
+  background: $lightText;
   position: absolute;
   display: inline-flex;
-  right: 0;
+  left: calc(50% - 6.25rem);
+  @include xTransform(translateX(500px));
 
   form {
     height: 100%;
@@ -196,10 +199,16 @@
 .private-tag {
   @include centeredVertically;
   display: inline-flex;
-  position: absolute;
-  left: 0;
-  height: $userPollHeight;
-  margin-left: .5em;
+  width: $userPollHeight;
+}
+
+.menu {
+  @include centeredVertically;
+  width: $userPollHeight;
+
+  i {
+    z-index: 5;
+  }
 }
 
 .message-inner {

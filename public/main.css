@@ -20,7 +20,7 @@ main a {
   color: #437A98; }
 
 .visible {
-  display: flex !important; }
+  display: flex; }
 
 .not-visible {
   display: none; }
@@ -102,6 +102,70 @@ main a {
     z-index: 0;
     -webkit-transform: translateX(-9999px);
     transform: translateX(-9999px); } }
+.fadeInText {
+  -webkit-animation-name: fadeInText;
+  -moz-animation-name: fadeInText;
+  animation-name: fadeInText; }
+@-webkit-keyframes fadeInText {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fadeInText {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.fadeOutText {
+  -webkit-animation-name: fadeOutText;
+  -moz-animation-name: fadeOutText;
+  animation-name: fadeOutText; }
+@-webkit-keyframes fadeOutText {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes fadeOutText {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+.slideIn {
+  -webkit-animation-name: slideIn;
+  -moz-animation-name: slideIn;
+  animation-name: slideIn; }
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: translateX(500px);
+    transform: translateX(500px); }
+  100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); } }
+@keyframes slideIn {
+  0% {
+    -webkit-transform: translateX(500px);
+    transform: translateX(500px); }
+  100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); } }
+.slideOut {
+  -webkit-animation-name: slideOut;
+  -moz-animation-name: slideOut;
+  animation-name: slideOut; }
+@-webkit-keyframes slideOut {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); }
+  100% {
+    -webkit-transform: translateX(500px);
+    transform: translateX(500px); } }
+@keyframes slideOut {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); }
+  100% {
+    -webkit-transform: translateX(500px);
+    transform: translateX(500px); } }
 html, body {
   margin: 0;
   padding: 0;
@@ -281,6 +345,7 @@ footer {
       background-color: #f2f2f2;
       border: 2px solid #ccc;
       padding: 1%;
+      z-index: 5;
       display: -webkit-flex;
       display: flex;
       -webkit-flex-direction: column;
@@ -338,6 +403,7 @@ footer {
       border: 2px solid #ccc;
       border-radius: 2px;
       padding: 1%;
+      z-index: 5;
       display: -webkit-flex;
       display: flex;
       -webkit-flex-direction: column;
@@ -424,9 +490,10 @@ footer {
 
 .edit-button {
   margin: 0;
+  margin-left: 1rem;
   margin-right: .5em;
   cursor: pointer;
-  width: 7em;
+  width: 5rem;
   height: 2em;
   border: none;
   border-radius: 2px;
@@ -437,9 +504,9 @@ footer {
 
 .delete-button {
   margin: 0;
-  margin-right: .5em;
+  margin-right: 1rem;
   cursor: pointer;
-  width: 7em;
+  width: 5rem;
   height: 2em;
   border: none;
   border-radius: 2px;
@@ -512,8 +579,19 @@ footer {
 
 .userPoll {
   border-bottom: 1px solid #CCCCCC;
-  height: 2em;
-  position: relative; }
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap; }
   .userPoll a {
     display: inline-block;
     line-height: 2em;
@@ -523,9 +601,12 @@ footer {
 
 .form-container {
   height: 2em;
+  background: #F2F2F2;
   position: absolute;
   display: inline-flex;
-  right: 0; }
+  left: calc(50% - 6.25rem);
+  -webkit-transform: translateX(500px);
+  transform: translateX(500px); }
   .form-container form {
     height: 100%;
     display: -webkit-flex;
@@ -581,10 +662,18 @@ footer {
   -webkit-justify-content: center;
   justify-content: center;
   display: inline-flex;
-  position: absolute;
-  left: 0;
-  height: 2em;
-  margin-left: .5em; }
+  width: 2em; }
+
+.menu {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 2em; }
+  .menu i {
+    z-index: 5; }
 
 .message-inner {
   padding: .125em 0 .125em 0;
