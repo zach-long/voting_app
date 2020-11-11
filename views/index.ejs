@@ -1,4 +1,4 @@
-<% include components/header.ejs %>
+<%- include('components/header'); -%>
 
   <% if (typeof errors != 'undefined') { %>
     <div class="error-messages">
@@ -33,4 +33,4 @@
     <% }); %>
   </div>
 
-<% include components/footer.ejs %>
+<%- include('components/footer'); -%>

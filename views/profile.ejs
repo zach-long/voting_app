@@ -1,4 +1,4 @@
-<% include components/header.ejs %>
+<%- include('components/header.ejs'); -%>
 
   <div class="main-content">
     <h3 class="content-header">Your polls</h3>
@@ -7,7 +7,7 @@
     <% } else { %>
       <p class="message-inner underlined standout"><a href="/poll">Create a poll!</a></p>
     <% userPolls.forEach(function(poll) { %>
-      <%- include('components/userPolls', { userPoll: poll }); %>
+      <%- include('components/userPolls', { userPoll: poll }); -%>
       <% }); %>
     <% }; %>
   </div>
@@ -17,9 +17,9 @@
     <% openPolls.forEach(function(poll) { %>
       <% if ((String(poll.creator) !== String(user._id)) &&
             (poll.privacy !== 'private')) { %>
-        <%- include('components/openPolls', { openPoll: poll }); %>
+        <%- include('components/openPolls', { openPoll: poll }); -%>
       <% }; %>
     <% }); %>
   </div>
 
-<% include components/footer.ejs %>
+<%- include('components/footer.ejs'); -%>

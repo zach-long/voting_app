@@ -1,5 +1,7 @@
 // imports
 const express = require('express')
+const body = require('express-validator').body
+var validationResult = require('express-validator').validationResult
 const router = express.Router()
 const passport = require('passport'),
  LocalStrategy = require('passport-local').Strategy
@@ -33,15 +35,18 @@ router.get('/login', (req, res) => {
 })
 
 // handle a POST request to register a user
-router.post('/register', (req, res) => {
-  // validate user
-  req.checkBody('name', 'You must enter a name').notEmpty()
-  req.checkBody('username', 'You must enter a username').notEmpty()
-  req.checkBody('password', 'You must enter a password').notEmpty()
-  req.checkBody('password2', 'The passwords you entered do not match').equals(req.body.password)
+router.post('/register',
+[
 
+  body('name').trim().escape().notEmpty().withMessage('You must enter a name'),
+  body('username').trim().escape().notEmpty().withMessage('You must enter a username'),
+  body('password').notEmpty().withMessage('You must enter a password'),
+  body('password2').exists().custom((value, {req}) => value === req.body.password).withMessage('The passwords you entered do not match')
+],
+(req, res) => {
   // handles logic based on validation
-  if (!req.validationErrors()) {
+  let errors = validationResult(req);
+  if (errors.isEmpty()) {
     // instantiate a User
     var newUser = new User({
       name: req.body.name,

@@ -6,19 +6,19 @@ const path = require('path')
 const ejs = require('ejs')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const expressValidator = require('express-validator')
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
-const mongodb = require('mongodb')
 const mongoose = require('mongoose')
 
-// connect database and save reference
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/voting_db', (err) => {
-  err ? console.log(err) : console.log("MongoDB connected successfully!")
-})
+// connect database
+const dbPath = process.env.MONGODB_URI || 'mongodb://localhost/voting_db'
+mongoose.connect(dbPath)
 var db = mongoose.connection;
+db.on('error', console.error.bind(console, `connection error:`))
+db.once('open', () => {
+  console.log(`MongoDB connected successfully at "${dbPath}".`)
+})
 
 // app init
 const app = express()
@@ -52,23 +52,23 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // validator
-app.use(expressValidator({
-  errorFormatter: (param, msg, value) => {
-    let namespace = param.split('.'),
-             root = namespace.shift(),
-        formParam = root
+// app.use(expressValidator({
+//   errorFormatter: (param, msg, value) => {
+//     let namespace = param.split('.'),
+//              root = namespace.shift(),
+//         formParam = root
 
-    while(namespace.length) {
-      formParam += '[' + namespace.shift() + ']'
-    }
+//     while(namespace.length) {
+//       formParam += '[' + namespace.shift() + ']'
+//     }
 
-    return {
-      param : formParam,
-      msg   : msg,
-      value : value
-    }
-  }
-}))
+//     return {
+//       param : formParam,
+//       msg   : msg,
+//       value : value
+//     }
+//   }
+// }))
 
 // flash
 app.use(flash())
@@ -87,6 +87,6 @@ app.use('/poll', pollController)
 
 // start server
 app.set('port', (process.env.PORT || 3000))
-app.listen(app.get('port'), function() {
-  console.log("Server listening on port " + app.get('port') + "...")
+app.listen(app.get('port'), () => {
+  console.log(`Server listening on port ${app.get('port')}...`)
 })

@@ -1,8 +1,6 @@
 // imports
 const express = require('express')
 const router = express.Router()
-const passport = require('passport'),
- LocalStrategy = require('passport-local').Strategy
 
 // include Poll model
 const Poll = require('../models/polls.js')

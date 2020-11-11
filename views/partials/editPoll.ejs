@@ -3,12 +3,12 @@
   <form class="create-poll-form" method="post" action="/poll/edit/<%= poll.pollid %>">
     <div id="poll-name-wrapper">
       <label>Poll name</label>
-      <input type="text" value="<%= poll.name %>" name="name">
+      <input type="text" value="<%- poll.name %>" name="name">
     </div>
     <div class="options">
       <div><h5 id="add-option" style="display: inline-block; cursor: pointer; text-decoration: underline">Add more options</h5></div>
       <% poll.options.forEach(function(option) { %>
-        <%- include('../components/editPollOption', {option: option.choice}); %>
+        <%- include('../components/editPollOption', {option: option.choice}); -%>
       <% }); %>
     </div>
     <div class="privacy">

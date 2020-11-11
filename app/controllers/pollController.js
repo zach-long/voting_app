@@ -1,7 +1,8 @@
 // imports
 const express = require('express')
+const body = require('express-validator').body
+var validationResult = require('express-validator').validationResult
 const router = express.Router()
-const mongoose = require('mongoose')
 
 // import models
 const Poll = require('../models/polls.js')
@@ -52,14 +53,16 @@ router.get('/:pollID', (req, res) => {
 })
 
 // saves poll to the DB
-router.post('/:pollID', (req, res) => {
+router.post('/:pollID',
+[
+  body('name').trim().escape().notEmpty().withMessage('You must enter a name')
+],
+(req, res) => {
   Poll.getPollByPollID(req.params.pollID, (err, thePoll) => {
     if (err) throw err
 
     if (thePoll === null) {
       if (req.user) {
-        // validate poll integrity
-        req.checkBody('name', 'You must enter a name').notEmpty()
 
         // set poll privacy level
         let privacyLevel;
@@ -73,7 +76,8 @@ router.post('/:pollID', (req, res) => {
         }
 
         // handles logic based on validation
-        if (!req.validationErrors()) {
+        let errors = validationResult(req);
+        if (errors.isEmpty()) {
           // instantiate a Poll, save to DB
           var newPoll = new Poll({
             creator: req.user._id,
